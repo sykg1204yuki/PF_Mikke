@@ -1,4 +1,6 @@
 <div class="container">
+
+  <!--ログインユーザーかどうかで表示を変更-->
   <% if @user == current_user %>
     <h2><strong>マイページ</strong></h2>
   <% else %>
@@ -23,12 +25,37 @@
     </div>
   </div>
 
+  <!--ここからプロフィール編集ボタン-->
   <div class="row">
     <div class="col-md-12">
       <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-secondary w-100" %>
     </div>
   </div>
+
+
+  <!--ここからユーザー投稿一覧-->
+  <div class="row">
+    <% @user.post_images.each do |post_image| %>
+      <div class="col-md-12">
+        <div class="card-body">
+          <%= link_to post_image_path(post_image.id) do %>
+            <%= attachment_image_tag post_image, :image, size:"800x500" %>
+          <% end %>
+          <p>
+            投稿日：<%= l post_image.created_at %>
+            |
+            コメント数：<%= post_image.post_comments.count %>件
+          </p>
+          <p>
+            タイトル：<%= post_image.title %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+
 
 
 
