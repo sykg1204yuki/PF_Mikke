@@ -1,0 +1,21 @@
+<h2><strong>プロフィール編集</strong></h2>
+
+<%= form_with model: @user, local: true do |f| %>
+  <div>
+    <!--ここにプロフィール画像挿入-->
+    <%= attachment_image_tag @user, :profile_image, size:"100x100", class:"rounded-circle" %>
+    <%= f.attachment_field :profile_image %>
+  </div>
+
+  <div>
+    <%= f.text_field :name, placeholder:"名前を入力してね！！" %>
+  </div>
+
+  <div>
+    <%= f.text_area :introduction, rows:'5', placeholder:"自己紹介を入力してね！！" %>
+  </div>
+
+  <div>
+    <%= f.submit '更新' %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<div class="container">
+  <% if @user == current_user %>
+    <h2><strong>マイページ</strong></h2>
+  <% else %>
+    <h2><strong><%= @user.name %>のページ</strong></h2>
+  <% end %>
+
+
+  <!--ここからプロフィール-->
+  <h6><strong>プロフィール</strong></h6>
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <%= attachment_image_tag @user, :profile_image, size:"200x200", class:"rounded-circle" %><br>
+      <%= @user.name %>
+    </div>
+    <div class="col-md-7">
+      <div>
+        <p><strong>Introduction</strong></p>
+        <p><%= @user.introduction %></p>
+      </div>
+
+      <!--ここにフォロー・フォロワー数表示予定-->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-secondary w-100" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

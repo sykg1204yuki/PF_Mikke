@@ -1,0 +1,30 @@
+<h2><strong>投稿詳細画面</strong></h2>
+
+<div>
+  <%= attachment_image_tag @post_image, :image, size:"800x500" %>
+
+  <% if user_signed_in? %>
+    <%= link_to user_path(@post_image.user.id) do %>
+      <p>ユーザー：<%= @post_image.user.name %></p>
+    <% end %>
+  <% end %>
+
+
+  <p>
+    タイトル：<%= @post_image.title %>
+  </p>
+
+  <p>
+    本文：<%= @post_image.caption %>
+  </p>
+
+  <% if @post_image.user == current_user %>
+  <p>
+    <%= link_to '編集', edit_post_image_path(@post_image.id) %>
+    |
+    <%= link_to '削除', post_image_path(@post_image.id), method: :delete %>
+  </p>
+  <% end %>
+
+
+</div>
