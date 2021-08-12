@@ -1,24 +1,45 @@
-# README
+# Mikke!!(みっけ!!)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+ガイドブックには載っていない何気ない小さな発見を投稿・閲覧できるサイトです。地域活性化やコロナ禍収束後の地域復興のためのツールとして利用いただければと思い作成しました。投稿・閲覧機能に加えて、気になった投稿のお気に入り登録やキーワード検索も可能です。
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+ガイドブックには載っていない何気ない小さな発見を投稿・閲覧できるサイト
 
-* Configuration
+### テーマを選んだ理由
 
-* Database creation
+・ガイドブックやお出かけサイトに載っている場所をめぐるだけじゃ面白みにかけると思い、＋ α の楽しみを探せるものを製作したかったから
 
-* Database initialization
+・地域活性化のための一つのツールとなり得るのではないかと考えたから
 
-* How to run the test suite
+・コロナ禍の収束後の地域復興に貢献できるのではないかと考えたから
 
-* Services (job queues, cache servers, search engines, etc.)
+### ターゲットユーザ
 
-* Deployment instructions
+・ガイドブックに載っているもの以外の新たな発見を求めている方
 
-* ...
+・地元の魅力をアピールしたい方
+
+・地域の観光協会
+
+### 主な利用シーン
+
+・散歩中やお出かけの時
+
+・休日のお出かけ先を決めるのに悩んだ時
+
+## 設計書
+
+## チャレンジ要素一覧
+
+https://docs.google.com/spreadsheets/d/1ecooQrhYFZlIP8RxmXi0w0mGl-qHwLYnUCviMpoRaCo/edit?usp=sharing
+
+## 開発環境
+
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- IDE：Cloud9
