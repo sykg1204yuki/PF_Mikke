@@ -6,14 +6,51 @@
     <div class="col-md-12">
       <%= attachment_image_tag @post_image, :image, size:"800x500" %>
 
+      <div class="row mt-1">
+        <div class="col-md-5">
+          <p>
+            投稿日時：<%= l @post_image.created_at %>
+            |
+            撮影場所：<%= @post_image.area.area_name %>
+          </p>
+        </div>
+
+        <div class="col-md-5">
+          <p>
+            コメント数：<%= @post_image.post_comments.count %>件
+            |
+            <!--「いいね」機能-->
+            <% if @post_image.favorited_by?(current_user) %>
+              <%= link_to post_image_favorites_path(@post_image.id), method: :delete do %>
+                ❤<%= @post_image.favorites.count %>
+              <% end %>
+            <% else %>
+              <%= link_to post_image_favorites_path(@post_image.id), method: :post do %>
+                ♡<%= @post_image.favorites.count %>
+              <% end %>
+            <% end %>
+            |
+            <!--「発見」機能-->
+            <% if @post_image.discovered_by?(current_user) %>
+              <%= link_to post_image_discovers_path(@post_image.id), method: :delete do %>
+                ⭐<%= @post_image.discovers.count %>
+              <% end %>
+            <% else %>
+              <%= link_to post_image_discovers_path(@post_image.id), method: :post do %>
+                ☆<%= @post_image.discovers.count %>←見つけたらポチ！
+              <% end %>
+            <% end %>
+          </p>
+        </div>
+      </div>
 
       <div class="row">
-        <!--投稿者-->
         <div class="col-md-3">
+          <!--投稿者-->
           <% if user_signed_in? %>
             <%= link_to user_path(@post_image.user.id) do %>
-              <div class="card-body text-center">
-                <%= attachment_image_tag @post_image.user, :profile_image, size:"150x150", class:"rounded-circle" %>
+              <div class="text-center">
+                <%= attachment_image_tag @post_image.user, :profile_image, fallback:"no-image.jpeg", size:"150x150", class:"rounded-circle" %>
                 <p><%= @post_image.user.name %></p>
               </div>
             <% end %>
@@ -21,30 +58,11 @@
         </div>
 
         <!--投稿内容-->
-        <div class="col-md-9">
-          <div class="card-body">
-            <p>
-              投稿日時：<%= l @post_image.created_at %>
-              |
-              コメント数：<%= @post_image.post_comments.count %>件
-              |
-              <!--「いいね」機能-->
-              <% if @post_image.favorited_by?(current_user) %>
-                <%= link_to post_image_favorites_path(@post_image.id), method: :delete do %>
-                  ❤<%= @post_image.favorites.count %>
-                <% end %>
-              <% else %>
-                <%= link_to post_image_favorites_path(@post_image.id), method: :post do %>
-                  ♡<%= @post_image.favorites.count %>
-                <% end %>
-              <% end %>
-
-            </p>
-
+        <div class="col-md-9 mt-2">
             <p>
               タイトル：<%= @post_image.title %>
             </p>
-
+            
             <p>
               本文：<%= @post_image.caption %>
             </p>
@@ -56,7 +74,7 @@
               <%= link_to '削除', post_image_path(@post_image.id), method: :delete %>
             </p>
             <% end %>
-          </div>
+
         </div>
 
       </div>
@@ -77,6 +95,7 @@
         <% @post_image.post_comments.reverse.each do |post_comment| %>
         <hr>
         <div class="row">
+
           <div class="col-md-2 text-center">
             <%= link_to user_path(post_comment.user.id) do %>
               <%= attachment_image_tag post_comment.user, :profile_image, size:"100x100" %>
@@ -85,6 +104,7 @@
               </p>
             <% end %>
           </div>
+
           <div class="col-md-6">
             <p>
               <%= l post_comment.created_at %>
@@ -93,9 +113,13 @@
               <%= post_comment.comment %>
             </p>
           </div>
+
           <div class="col-md-2">
-            <%= link_to 'コメントを消す', post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger" %>
+            <% if post_comment.user == current_user %>
+              <%= link_to 'コメントを消す', post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger" %>
+            <% end %>
           </div>
+
         </div>
         <% end %>
       </div>

@@ -1,0 +1,7 @@
+<h2><strong>エリア名 変更</strong></h2>
+
+<%= form_with model: @area, local: true do |f| %>
+  <%= f.label :エリア名 %>
+  <%= f.text_field :area_name, placeholder: '大阪市北区' %>
+  <%= f.submit '変更' %>
+<% end %>

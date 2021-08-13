@@ -8,7 +8,8 @@
     <div class="col-md-3">
       <div class="card">
         <%= link_to post_image_path(post_image.id) do %>
-          <%= attachment_image_tag post_image, :image, size:"280x280" %>
+          <%= attachment_image_tag post_image, :image, size:"280x280" %><br>
+          <%= post_image.area.area_name %>
         <% end %>
       </div>
     </div>

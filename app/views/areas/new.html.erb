@@ -1,7 +1,18 @@
-<h2><strong>エリア登録・追加</strong></h2>
+<h2><strong>エリア名 登録・追加</strong></h2>
 
 <%= form_with model: @area, local: true do |f| %>
   <%= f.label :エリア名 %>
   <%= f.text_field :area_name, placeholder: '大阪市北区' %>
   <%= f.submit '登録・追加' %>
+<% end %>
+
+<% @areas.each do |area| %>
+  <hr>
+  <p>
+    <%= area.area_name %>
+    
+    <%= link_to '変更', edit_area_path(area.id) %>
+    |
+    <%= link_to '削除', area_path(area.id), method: :delete %>
+  </p>
 <% end %>

@@ -12,6 +12,11 @@
   </div>
 
   <div>
+    <%= f.label :エリア %><br>
+    <%= f.collection_select(:area_id, Area.all, :id, :area_name, prompt: '-- 選択してください --') %>
+  </div>
+
+  <div>
     <%= f.label :本文 %><br>
     <%= f.text_area :caption, rows:'5' %>
   </div>

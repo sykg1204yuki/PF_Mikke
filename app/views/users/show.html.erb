@@ -12,16 +12,56 @@
   <h6><strong>プロフィール</strong></h6>
   <div class="row">
     <div class="col-md-3 text-center">
-      <%= attachment_image_tag @user, :profile_image, size:"200x200", class:"rounded-circle" %><br>
+      <%= attachment_image_tag @user, :profile_image, fallback:"no-image.jpeg", size:"200x200", class:"rounded-circle" %><br>
       <%= @user.name %>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-5">
       <div>
         <p><strong>Introduction</strong></p>
         <p><%= @user.introduction %></p>
       </div>
 
       <!--ここにフォロー・フォロワー数表示予定-->
+      <div>
+
+      </div>
+    </div>
+
+    <!--ヘッダーと同じリンクボタン-->
+    <div class="col-md-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <%= link_to new_post_image_path do %>
+              <div class="bg-light text-secondary text-center">
+                <i class="fas fa-camera fa-4x"></i>
+                <p>新規投稿</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to post_images_path do %>
+              <div class="bg-light text-secondary text-center">
+                <i class="fas fa-search fa-4x"></i>
+                <p>探索</p>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="col-md-6">
+            <%= link_to users_path do %>
+              <div class="bg-light text-secondary text-center">
+                <i class="fas fa-users fa-4x"></i>
+                <p>ユーザー一覧</p>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 
@@ -35,7 +75,7 @@
 
   <!--ここからユーザー投稿一覧-->
   <div class="row">
-    <% @user.post_images.each do |post_image| %>
+    <% @user.post_images.reverse.each do |post_image| %>
       <div class="col-md-12">
         <div class="card-body">
           <%= link_to post_image_path(post_image.id) do %>
