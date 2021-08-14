@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
 
   resources :areas, except: [:show]
+  get '/searches' => 'searches#search'
 
 end

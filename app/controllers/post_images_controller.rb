@@ -18,6 +18,7 @@ class PostImagesController < ApplicationController
   # 投稿一覧画面表示
   def index
     @post_images = PostImage.all
+    @areas = Area.all
 
   end
 
