@@ -20,10 +20,18 @@
         <p><strong>Introduction</strong></p>
         <p><%= @user.introduction %></p>
       </div>
-
+      <hr>
       <!--ここにフォロー・フォロワー数表示予定-->
       <div>
-
+        <p>
+          <%= link_to followings_user_path(@user.id) do %>
+            フォロー数：<%= @user.followings.count %>
+          <% end %>
+          |
+          <%= link_to followers_user_path(@user.id) do %>
+            フォロワー数：<%= @user.followers.count %>
+          <% end %>
+        </p>
       </div>
     </div>
 
@@ -68,7 +76,16 @@
   <!--ここからプロフィール編集ボタン-->
   <div class="row">
     <div class="col-md-12">
-      <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-secondary w-100" %>
+      <% if @user == current_user %>
+        <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-secondary w-100" %>
+      <% else %>
+        <% if current_user.followings?(@user) %>
+          <%= link_to 'フォローをはずす', user_relationships_path(@user.id), method: :delete, class:"btn btn-outline-primary w-100" %>
+        <% else %>
+          <%= link_to 'フォローする', user_relationships_path(@user.id), method: :post, class:"btn btn-outline-success w-100" %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 

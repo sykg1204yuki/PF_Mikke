@@ -25,6 +25,21 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user.id)
 
   end
+  
+  # フォローしているユーザー一覧表示
+  def followings
+    user = User.find(params[:id])
+    @users = user.followings
+
+  end
+  
+  
+  # フォローされてる（フォロワー）ユーザー一覧表示
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
+
+  end
 
   # ユーザーのストロングパラメータ
   private

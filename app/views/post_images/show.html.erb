@@ -58,15 +58,15 @@
         </div>
 
         <!--投稿内容-->
-        <div class="col-md-9 mt-2">
+        <div class="col-md-6 mt-2">
             <p>
               タイトル：<%= @post_image.title %>
             </p>
-            
+            <hr>
             <p>
               本文：<%= @post_image.caption %>
             </p>
-
+            <hr>
             <% if @post_image.user == current_user %>
             <p>
               <%= link_to '編集', edit_post_image_path(@post_image.id) %>
