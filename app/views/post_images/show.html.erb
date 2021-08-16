@@ -5,128 +5,154 @@
     <!--投稿写真-->
     <div class="col-md-12">
       <%= attachment_image_tag @post_image, :image, size:"800x500" %>
-
-      <div class="row mt-1">
-        <div class="col-md-5">
-          <p>
-            投稿日時：<%= l @post_image.created_at %>
-            |
-            撮影場所：<%= @post_image.area.area_name %>
-          </p>
+      <% if user_signed_in? %>
+      
+        <!--ログインしている時-->
+        <div class="row mt-1">
+          <div class="col-md-5">
+            <p>
+              投稿日時：<%= l @post_image.created_at %>
+              |
+              撮影場所：<%= @post_image.area.area_name %>
+            </p>
+          </div>
+        
+          <div class="col-md-5">
+            <p>
+              コメント数：<%= @post_image.post_comments.count %>件
+              |
+              <!--「いいね」機能-->
+              <% if @post_image.favorited_by?(current_user) %>
+                <%= link_to post_image_favorites_path(@post_image.id), method: :delete do %>
+                  ❤<%= @post_image.favorites.count %>
+                <% end %>
+              <% else %>
+                <%= link_to post_image_favorites_path(@post_image.id), method: :post do %>
+                  ♡<%= @post_image.favorites.count %>
+                <% end %>
+              <% end %>
+              |
+              <!--「発見」機能-->
+              <% if @post_image.discovered_by?(current_user) %>
+                <%= link_to post_image_discovers_path(@post_image.id), method: :delete do %>
+                  ⭐<%= @post_image.discovers.count %>
+                <% end %>
+              <% else %>
+                <%= link_to post_image_discovers_path(@post_image.id), method: :post do %>
+                  ☆<%= @post_image.discovers.count %>←見つけたらポチ！
+                <% end %>
+              <% end %>
+            </p>
+          </div>
         </div>
-
-        <div class="col-md-5">
-          <p>
-            コメント数：<%= @post_image.post_comments.count %>件
-            |
-            <!--「いいね」機能-->
-            <% if @post_image.favorited_by?(current_user) %>
-              <%= link_to post_image_favorites_path(@post_image.id), method: :delete do %>
-                ❤<%= @post_image.favorites.count %>
-              <% end %>
-            <% else %>
-              <%= link_to post_image_favorites_path(@post_image.id), method: :post do %>
-                ♡<%= @post_image.favorites.count %>
-              <% end %>
-            <% end %>
-            |
-            <!--「発見」機能-->
-            <% if @post_image.discovered_by?(current_user) %>
-              <%= link_to post_image_discovers_path(@post_image.id), method: :delete do %>
-                ⭐<%= @post_image.discovers.count %>
-              <% end %>
-            <% else %>
-              <%= link_to post_image_discovers_path(@post_image.id), method: :post do %>
-                ☆<%= @post_image.discovers.count %>←見つけたらポチ！
-              <% end %>
-            <% end %>
-          </p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <!--投稿者-->
-          <% if user_signed_in? %>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <!--投稿者-->
             <%= link_to user_path(@post_image.user.id) do %>
               <div class="text-center">
                 <%= attachment_image_tag @post_image.user, :profile_image, fallback:"no-image.jpeg", size:"150x150", class:"rounded-circle" %>
                 <p><%= @post_image.user.name %></p>
               </div>
             <% end %>
+          </div>
+        
+          <!--投稿内容-->
+          <div class="col-md-6 mt-2">
+              <p>
+                タイトル：<%= @post_image.title %>
+              </p>
+              <hr>
+              <p>
+                本文：<%= @post_image.caption %>
+              </p>
+              <hr>
+              <% if @post_image.user == current_user %>
+              <p>
+                <%= link_to '編集', edit_post_image_path(@post_image.id) %>
+                |
+                <%= link_to '削除', post_image_path(@post_image.id), method: :delete %>
+              </p>
+              <% end %>
+        
+          </div>
+        
+        </div>
+        
+        <!--コメント投稿-->
+        <div>
+          <%= form_with model:[@post_image,@post_comment], local: true do |f| %>
+          <div>
+            <%= f.text_area :comment, class:"w-75", placeholder:"ここにコメントを入力してね！" %>
+            <%= f.submit '送信' %>
+          </div>
           <% end %>
         </div>
-
-        <!--投稿内容-->
-        <div class="col-md-6 mt-2">
+        
+        <!--コメント一覧-->
+        <div>
+          <h6><strong>コメント一覧</strong></h6>
+          <% @post_image.post_comments.reverse.each do |post_comment| %>
+          <hr>
+          <div class="row">
+        
+            <div class="col-md-2 text-center">
+              <%= link_to user_path(post_comment.user.id) do %>
+                <%= attachment_image_tag post_comment.user, :profile_image, size:"100x100" %>
+                <p>
+                  <%= post_comment.user.name %>
+                </p>
+              <% end %>
+            </div>
+        
+            <div class="col-md-6">
+              <p>
+                <%= l post_comment.created_at %>
+              </p>
+              <p>
+                <%= post_comment.comment %>
+              </p>
+            </div>
+        
+            <div class="col-md-2">
+              <% if post_comment.user == current_user %>
+                <%= link_to 'コメントを消す', post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger" %>
+              <% end %>
+            </div>
+        
+          </div>
+          <% end %>
+        </div>
+        
+      <% else %>
+      
+        <!--ログインしていない時-->
+        <div class="row mt-1">
+          <div class="col-md-5">
+            <p>
+              投稿日時：<%= l @post_image.created_at %>
+            </p>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-3">
+            <!--投稿者-->
+            <div class="text-center">
+              <%= attachment_image_tag @post_image.user, :profile_image, fallback:"no-image.jpeg", size:"150x150", class:"rounded-circle" %>
+              <p><%= @post_image.user.name %></p>
+            </div>
+          </div>
+  
+          <!--投稿内容-->
+          <div class="col-md-6 mt-2">
             <p>
               タイトル：<%= @post_image.title %>
             </p>
-            <hr>
-            <p>
-              本文：<%= @post_image.caption %>
-            </p>
-            <hr>
-            <% if @post_image.user == current_user %>
-            <p>
-              <%= link_to '編集', edit_post_image_path(@post_image.id) %>
-              |
-              <%= link_to '削除', post_image_path(@post_image.id), method: :delete %>
-            </p>
-            <% end %>
-
-        </div>
-
-      </div>
-
-      <!--コメント投稿-->
-      <div>
-        <%= form_with model:[@post_image,@post_comment], local: true do |f| %>
-        <div>
-          <%= f.text_area :comment, class:"w-75", placeholder:"ここにコメントを入力してね！" %>
-          <%= f.submit '送信' %>
-        </div>
-        <% end %>
-      </div>
-
-      <!--コメント一覧-->
-      <div>
-        <h6><strong>コメント一覧</strong></h6>
-        <% @post_image.post_comments.reverse.each do |post_comment| %>
-        <hr>
-        <div class="row">
-
-          <div class="col-md-2 text-center">
-            <%= link_to user_path(post_comment.user.id) do %>
-              <%= attachment_image_tag post_comment.user, :profile_image, size:"100x100" %>
-              <p>
-                <%= post_comment.user.name %>
-              </p>
-            <% end %>
           </div>
-
-          <div class="col-md-6">
-            <p>
-              <%= l post_comment.created_at %>
-            </p>
-            <p>
-              <%= post_comment.comment %>
-            </p>
-          </div>
-
-          <div class="col-md-2">
-            <% if post_comment.user == current_user %>
-              <%= link_to 'コメントを消す', post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger" %>
-            <% end %>
-          </div>
-
         </div>
-        <% end %>
-      </div>
-
+      <% end %>
     </div>
   </div>
-
-
 </div>
 

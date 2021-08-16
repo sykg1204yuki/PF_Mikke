@@ -5,41 +5,53 @@
 
   <div class="row">
 
-    <!--エリア検索-->
-    <div class="col-md-2" style="height: 600px; overflow-y:scroll;">
-      <table class="table table-border" height="600">
-        <thead>
-          <tr>
-            <th>エリア検索</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @areas.each do |area| %>
-          <tr>
-            <td>
-              <%= link_to area.area_name, searches_path('search[areaid]': area.id) %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
 
-    <div class="col-md-10">
-      <div class="container">
-        <div class="row">
-          <!--投稿一覧-->
-          <% @post_images.reverse.each do |post_image| %>
-          <div class="col-md-4 p-1">
-            <%= link_to post_image_path(post_image.id) do %>
-              <%= attachment_image_tag post_image, :image, size:"300x300" %><br>
+    <% if user_signed_in? %>
+      <!--エリア検索-->
+      <div class="col-md-2" style="height: 600px; overflow-y:scroll;">
+        <table class="table table-border" height="600">
+          <thead>
+            <tr>
+              <th>エリア検索</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @areas.each do |area| %>
+            <tr>
+              <td>
+                <%= link_to area.area_name, searches_path('search[areaid]': area.id) %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-10">
+        <div class="container">
+          <div class="row">
+            <!--投稿一覧-->
+            <% @post_images.reverse.each do |post_image| %>
+            <div class="col-md-4 p-1">
+              <%= link_to post_image_path(post_image.id) do %>
+                <%= attachment_image_tag post_image, :image, size:"300x300" %><br>
+              <% end %>
+            </div>
             <% end %>
           </div>
-          <% end %>
         </div>
       </div>
-    </div>
+
+    <% else %>
+      <!--投稿一覧-->
+        <% @post_images.reverse.each do |post_image| %>
+          <div class="col-md-3 p-1">
+            <%= link_to post_image_path(post_image.id) do %>
+              <%= attachment_image_tag post_image, :image, size:"280x280" %><br>
+            <% end %>
+          </div>
+        <% end %>
+    <% end %>
 
   </div>
-
 </div>

@@ -1,27 +1,25 @@
 <div class="container">
+  <h2><strong>プロフィール編集</strong></h2>
   <div class="row">
     <div class="col-md-12">
-      <h2><strong>プロフィール編集</strong></h2>
-
       <%= form_with model: @user, local: true do |f| %>
-        <div>
-          <!--ここにプロフィール画像挿入-->
-          <%= attachment_image_tag @user, :profile_image, size:"100x100", class:"rounded-circle" %>
-          <%= f.attachment_field :profile_image %>
-        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <!--ここにプロフィール画像挿入-->
+              <%= attachment_image_tag @user, :profile_image, fallback:"no-image.jpeg", size:"250x250", class:"rounded-circle" %><br>
+              <%= f.attachment_field :profile_image %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label :名前 %><br>
+              <%= f.text_field :name, placeholder:"名前を入力してね！！" %>
+              <hr>
+              <%= f.label :自己紹介 %><br>
+              <%= f.text_area :introduction, rows:'5', placeholder:"自己紹介を入力してね！！" %><br>
 
-        <div>
-          <%= f.label :名前 %><br>
-          <%= f.text_field :name, placeholder:"名前を入力してね！！" %>
-        </div>
-
-        <div>
-          <%= f.label :自己紹介 %><br>
-          <%= f.text_area :introduction, rows:'5', placeholder:"自己紹介を入力してね！！" %>
-        </div>
-
-        <div>
-          <%= f.submit '更新' %>
+              <%= f.submit '更新' %>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>

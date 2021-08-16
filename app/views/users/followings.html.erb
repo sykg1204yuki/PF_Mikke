@@ -20,10 +20,12 @@
               フォロワー数：<%= user.followers.count %>
             </td>
             <td>
-              <% if current_user.followings?(user) %>
-                <%= link_to 'フォローをはずす', user_relationships_path(user.id), method: :delete, class:"btn btn-outline-primary" %>
-              <% else %>
-                <%= link_to 'フォローする', user_relationships_path(user.id), method: :post, class:"btn btn-outline-success" %>
+              <% if user != current_user %>
+                <% if current_user.followings?(user) %>
+                  <%= link_to 'フォローをはずす', user_relationships_path(user.id), method: :delete, class:"btn btn-outline-primary" %>
+                <% else %>
+                  <%= link_to 'フォローする', user_relationships_path(user.id), method: :post, class:"btn btn-outline-success" %>
+                <% end %>
               <% end %>
             </td>
           </tr>

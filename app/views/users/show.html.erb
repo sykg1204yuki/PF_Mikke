@@ -1,3 +1,5 @@
+<div class="head-visual"></div>
+
 <div class="container">
 
   <!--ログインユーザーかどうかで表示を変更-->
@@ -73,11 +75,12 @@
     </div>
   </div>
 
-  <!--ここからプロフィール編集ボタン-->
+
+  <!--ここからプロフィール編集ボタンorフォロー・フォロワーボタン-->
   <div class="row">
     <div class="col-md-12">
       <% if @user == current_user %>
-        <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-secondary w-100" %>
+        <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-outline-secondary w-100" %>
       <% else %>
         <% if current_user.followings?(@user) %>
           <%= link_to 'フォローをはずす', user_relationships_path(@user.id), method: :delete, class:"btn btn-outline-primary w-100" %>
@@ -113,9 +116,4 @@
 </div>
 
 
-
-
-
-
-
-
+<div class="foot-visual"></div>
