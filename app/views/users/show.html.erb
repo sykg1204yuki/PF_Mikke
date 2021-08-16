@@ -99,7 +99,17 @@
       <div class="col-md-12">
         <div class="card-body">
           <%= link_to post_image_path(post_image.id) do %>
-            <%= attachment_image_tag post_image, :image, size:"800x500" %>
+            <!--複数枚の写真を表示-->
+            <% if post_image.images.attached? %>
+              <div id="post-images">
+                <div class="theTarget">
+                  <!-- ↑↑↑ eachで繰り返し処理をしているので、「id」ではなく「class」を指定-->
+                  <% post_image.images.each do |image| %>
+                    <%= image_tag image, size:"800x500" %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           <% end %>
           <p>
             投稿日：<%= l post_image.created_at %>

@@ -69,8 +69,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #ここから追加
 gem 'devise'
 
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
+# ↓↓↓ active_storageをインストールしたため不使用→bundle update：PostImageテーブル内のimage_idカラムも不使用→カラム削除
+# gem "refile", require: "refile/rails", github: 'manfe/refile'
+# gem "refile-mini_magick"
 
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'

@@ -6,7 +6,7 @@
       <%= form_with model: @post_image, local: true do |f| %>
         <div>
           <%= f.label :画像選択 %><br>
-          <%= f.attachment_field :image %>
+          <%= f.file_field :images, multiple: true %>
         </div>
       
         <div>

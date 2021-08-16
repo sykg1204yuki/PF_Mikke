@@ -6,7 +6,7 @@ class PostImage < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :discovers, dependent: :destroy
 
-  attachment :image
+  has_many_attached :images
   
   # 引数で渡されたユーザidがFavoritesテーブル内に存在するかどうか
   def favorited_by?(user)

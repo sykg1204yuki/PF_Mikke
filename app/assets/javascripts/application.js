@@ -18,3 +18,24 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+// スライドショー
+// ↓↓↓ 以下1行を入れることで「gem 'turbolinks', '~> 5'」を無効化
+document.addEventListener("turbolinks:load"
+,function(){
+  $(document).ready(function(){
+    $(".theTarget").skippr({
+      transition: 'fade',
+      speed: 1500,
+      easing: 'easeOutQuart',
+      navType: 'block',
+      childrenElementType: 'img',
+      arrows: false,
+      autoPlay: true,
+      autoPlayDuration: 2000,
+      keyboardOnAlways: true,
+      hidePrevious: false
+    });
+  });
+})
