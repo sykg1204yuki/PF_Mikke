@@ -20,7 +20,7 @@
 //= require_tree .
 
 
-// スライドショー
+// ユーザー・投稿のshowページのスライドショー
 // ↓↓↓ 以下1行を入れることで「gem 'turbolinks', '~> 5'」を無効化
 document.addEventListener("turbolinks:load"
 ,function(){
@@ -38,4 +38,24 @@ document.addEventListener("turbolinks:load"
       hidePrevious: false
     });
   });
+
+  // 投稿indexページのスライドショー
+  $(document).ready(function(){
+    $(".index-theTarget").skippr({
+      transition: 'fade',
+      speed: 1500,
+      easing: 'easeOutQuart',
+      navType: 'block',
+      childrenElementType: 'img',
+      arrows: false,
+      autoPlay: false,
+      autoPlayDuration: 2000,
+      keyboardOnAlways: true,
+      hidePrevious: false,
+      dots: true
+    });
+  });
 })
+
+// クラッカブルマップの画像のレスポンシブ対応
+jQuery( 'img[usemap]' ).rwdImageMaps();

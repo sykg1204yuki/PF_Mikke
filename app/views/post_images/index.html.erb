@@ -1,4 +1,3 @@
-
 <div class="container">
 
   <h2><strong>投稿一覧</strong></h2>
@@ -16,6 +15,11 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>
+                <%= link_to '全件', post_images_path %>
+              </td>
+            </tr>
             <% @areas.each do |area| %>
             <tr>
               <td>
@@ -35,9 +39,13 @@
               <div class="col-md-4 p-1">
                 <% if post_image.images.attached? %>
                   <%= link_to post_image_path(post_image.id) do %>
-                    <% post_image.images.each do |image| %>
-                      <%= image_tag image, size:"300x300" %>
-                    <% end %>
+                    <div id="loginIndex-post-images">
+                      <div class="index-theTarget">
+                        <% post_image.images.each do |image| %>
+                          <%= image_tag image, size:"300x300" %>
+                        <% end %>
+                      </div>
+                    </div>
                   <% end %>
                 <% end %>
               </div>
@@ -50,8 +58,16 @@
       <!--投稿一覧-->
         <% @post_images.reverse.each do |post_image| %>
           <div class="col-md-3 p-1">
-            <%= link_to post_image_path(post_image.id) do %>
-              <%= attachment_image_tag post_image, :image, size:"280x280" %><br>
+            <% if post_image.images.attached? %>
+              <%= link_to post_image_path(post_image.id) do %>
+                <div id="logoutIndex-post-images">
+                  <div class="index-theTarget">
+                    <% post_image.images.each do |image| %>
+                      <%= image_tag image, size:"280x280" %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
             <% end %>
           </div>
         <% end %>

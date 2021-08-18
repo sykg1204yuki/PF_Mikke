@@ -56,7 +56,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  
+
   #ここから追加
   gem 'rspec-rails'
   gem "factory_bot_rails"
@@ -70,8 +70,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 # ↓↓↓ active_storageをインストールしたため不使用→bundle update：PostImageテーブル内のimage_idカラムも不使用→カラム削除
-# gem "refile", require: "refile/rails", github: 'manfe/refile'
-# gem "refile-mini_magick"
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
 
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'

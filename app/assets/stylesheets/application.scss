@@ -34,9 +34,38 @@
 }
 
 
+/*hoverした際のスケールで全体を拡大し影を付ける*/
+.index-theTarget:hover {
+    transform: scale(1.05);
+    /*ボックスの影*/
+    box-shadow: 0 15px 15px rgba(57,250,215,0.4);
+}
+
+
+// クラッカブルマップ画像
+.map_area{
+  width:100％;
+  height:800px;
+}
+
+
 
 // ここからJavaScript関連
+
+
 #post-images{
   width:800px;
   height:500px;
 }
+// ログイン時の投稿一覧画面表示
+#loginIndex-post-images{
+  width:300px;
+  height:300px;
+}
+
+// ログアウト時の投稿一覧画面表示
+#logoutIndex-post-images{
+  width:280px;
+  height:280px;
+}
+

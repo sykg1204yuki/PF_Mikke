@@ -36,6 +36,9 @@ class AreasController < ApplicationController
     redirect_to new_area_path
     
   end 
+  
+  def map_area
+  end 
 
   private
 
