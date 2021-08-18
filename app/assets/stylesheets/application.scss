@@ -20,7 +20,7 @@
 .head-visual{
   width:100%;
   height:100px;
-  background-image:image-url(green2.JPG);
+  background-image:image-url('green2.JPG');
   background-size:cover;
   background-position:center;
 }
@@ -28,7 +28,7 @@
 .foot-visual{
   width:100%;
   height:100px;
-  background-image:image-url(green2.JPG);
+  background-image:image-url('green2.JPG');
   background-size:cover;
   background-position:center;
 }
