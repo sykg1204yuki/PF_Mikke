@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-md-4 text-center">
               <!--ここにプロフィール画像挿入-->
-              <%= attachment_image_tag @user, :profile_image, fallback:"no-image.jpeg", size:"250x250", class:"rounded-circle" %><br>
+              <%= attachment_image_tag @user, :profile_image, fallback:"no-image.jpg", size:"250x250", class:"rounded-circle" %><br>
               <%= f.attachment_field :profile_image %>
             </div>
             <div class="col-md-4">
