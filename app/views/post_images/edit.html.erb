@@ -11,16 +11,16 @@
 
         <div>
           <%= f.label :タイトル %><br>
-          <%= f.text_field :title %>
+          <%= f.text_field :title, class:"w-50" %>
         </div>
 
         <div>
           <%= f.label :本文 %><br>
-          <%= f.text_area :caption, rows:'5' %>
+          <%= f.text_area :caption, rows:'5', class:"w-50" %>
         </div>
 
         <div>
-          <%= f.submit '更新' %>
+          <%= f.submit '更新', class:"btn btn-primary" %>
         </div>
 
       <% end %>

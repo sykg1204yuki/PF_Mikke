@@ -17,7 +17,7 @@ class PostImagesController < ApplicationController
 
   # 投稿一覧画面表示
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.all.search(params[:search])
     @areas = Area.all
 
   end

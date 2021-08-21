@@ -2,32 +2,32 @@
   <div class="row">
     <div class="col-md-12">
       <h2><strong>新規投稿</strong></h2>
-      
+
       <%= form_with model: @post_image, local: true do |f| %>
         <div>
           <%= f.label :画像選択 %><br>
           <%= f.file_field :images, multiple: true %>
         </div>
-      
+
         <div>
           <%= f.label :タイトル %><br>
-          <%= f.text_field :title %>
+          <%= f.text_field :title, class:"w-50" %>
         </div>
-      
+
         <div>
           <%= f.label :エリア %><br>
           <%= f.collection_select(:area_id, Area.all, :id, :area_name, prompt: '-- 選択してください --') %>
         </div>
-      
+
         <div>
           <%= f.label :本文 %><br>
-          <%= f.text_area :caption, rows:'5' %>
+          <%= f.text_area :caption, rows:'5', class:"w-50" %>
         </div>
-      
+
         <div>
-          <%= f.submit '投稿' %>
+          <%= f.submit '投稿', class:"btn btn-primary" %>
         </div>
-      
+
       <% end %>
     </div>
   </div>

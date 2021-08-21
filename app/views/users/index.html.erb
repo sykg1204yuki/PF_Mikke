@@ -1,4 +1,11 @@
 <div class="container">
+  
+  <!--ユーザー検索フォーム-->
+  <%= form_tag(users_path, :method => "get") do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag '検索', :name => nil, class:"button is-info" %>
+  <% end %>
+  
   <h2>ユーザー一覧画面</h2>
 
   <div class="row">

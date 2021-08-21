@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  # ユーザー一覧画面表示
+  # ユーザー一覧画面表示（検索機能付き）
   def index
-    @users = User.all
-    
+    @users = User.all.search(params[:search])
+
   end
 
   # マイページ・ユーザー詳細画面表示
@@ -25,15 +25,15 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user.id)
 
   end
-  
+
   # フォローしているユーザー一覧表示
   def followings
     user = User.find(params[:id])
     @users = user.followings
 
   end
-  
-  
+
+
   # フォローされてる（フォロワー）ユーザー一覧表示
   def followers
     user = User.find(params[:id])

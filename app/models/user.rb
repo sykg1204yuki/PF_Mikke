@@ -49,6 +49,15 @@ class User < ApplicationRecord
 
   # プロフィール画像設定
   attachment :profile_image
+  
+  # ユーザー検索のためのメソッド
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end 
 
 
 

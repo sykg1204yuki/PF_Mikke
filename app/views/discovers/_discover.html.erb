@@ -1,0 +1,9 @@
+<% if post_image.discovered_by?(current_user) %>
+  <%= link_to post_image_discovers_path(post_image.id), method: :delete, remote: true do %>
+    ⭐<%= post_image.discovers.count %>
+  <% end %>
+<% else %>
+  <%= link_to post_image_discovers_path(post_image.id), method: :post, remote: true do %>
+    ☆<%= post_image.discovers.count %>←見つけたらポチ！
+  <% end %>
+<% end %>

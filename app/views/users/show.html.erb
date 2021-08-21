@@ -94,7 +94,7 @@
   <!--ここからユーザー投稿一覧-->
   <div class="row">
     <% @user.post_images.reverse.each do |post_image| %>
-      <div class="col-md-12">
+      <div class="col-md-9">
         <div class="card-body">
           <%= link_to post_image_path(post_image.id) do %>
             <!--複数枚の写真を表示-->

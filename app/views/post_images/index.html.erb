@@ -1,5 +1,10 @@
 <div class="container">
 
+  <!--キーワード検索フォーム-->
+  <%= form_tag(post_images_path, :method => "get") do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'キーワード検索', :caption => nil, class:"button is-info" %>
+  <% end %>
   <h2><strong>投稿一覧</strong></h2>
 
   <div class="row">

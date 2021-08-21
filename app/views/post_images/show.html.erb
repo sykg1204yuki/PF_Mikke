@@ -30,30 +30,18 @@
           </div>
 
           <div class="col-md-5">
-            <p>
+            <p id="post_image-<%= @post_image.id %>">
               コメント数：<%= @post_image.post_comments.count %>件
               |
               <!--「いいね」機能-->
-              <% if @post_image.favorited_by?(current_user) %>
-                <%= link_to post_image_favorites_path(@post_image.id), method: :delete do %>
-                  ❤<%= @post_image.favorites.count %>
-                <% end %>
-              <% else %>
-                <%= link_to post_image_favorites_path(@post_image.id), method: :post do %>
-                  ♡<%= @post_image.favorites.count %>
-                <% end %>
-              <% end %>
+              <span class="favorite-btn">
+                <%= render 'favorites/favorite', post_image: @post_image %>
+              </span>
               |
               <!--「発見」機能-->
-              <% if @post_image.discovered_by?(current_user) %>
-                <%= link_to post_image_discovers_path(@post_image.id), method: :delete do %>
-                  ⭐<%= @post_image.discovers.count %>
-                <% end %>
-              <% else %>
-                <%= link_to post_image_discovers_path(@post_image.id), method: :post do %>
-                  ☆<%= @post_image.discovers.count %>←見つけたらポチ！
-                <% end %>
-              <% end %>
+              <span class="discover-btn">
+                <%= render 'discovers/discover', post_image: @post_image %>
+              </span>
             </p>
           </div>
         </div>
