@@ -2,26 +2,25 @@
   <h2><strong>投稿詳細画面</strong></h2>
 
   <div class="row">
-    <!--投稿写真-->
-    <div class="col-md-12">
 
-      <!--複数枚の写真を表示 スライドショー適用-->
-      <% if @post_image.images.attached? %>
-        <div id="post-images">
-          <div class="theTarget">
-            <% @post_image.images.each do |image| %>
-              <%= image_tag image, size:"800x500" %>
-            <% end %>
+    <% if user_signed_in? %>
+
+      <!--ログインしている時-->
+      <div class="col-md-9">
+
+        <!--複数枚の写真を表示 スライドショー適用-->
+        <% if @post_image.images.attached? %>
+          <div id="post-images">
+            <div class="theTarget">
+              <% @post_image.images.each do |image| %>
+                <%= image_tag image, size:"800x500" %>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
 
-
-      <% if user_signed_in? %>
-
-        <!--ログインしている時-->
         <div class="row mt-1">
-          <div class="col-md-5">
+          <div class="col-md-6">
             <p>
               投稿日時：<%= l @post_image.created_at %>
               |
@@ -29,9 +28,11 @@
             </p>
           </div>
 
-          <div class="col-md-5">
+          <div class="col-md-6">
             <p id="post_image-<%= @post_image.id %>">
-              コメント数：<%= @post_image.post_comments.count %>件
+              <span class="comments-count">
+                コメント数：<%= @post_image.post_comments.count %>件
+              </span>
               |
               <!--「いいね」機能-->
               <span class="favorite-btn">
@@ -69,64 +70,51 @@
               <hr>
               <% if @post_image.user == current_user %>
               <p>
-                <%= link_to '編集', edit_post_image_path(@post_image.id) %>
-                |
-                <%= link_to '削除', post_image_path(@post_image.id), method: :delete %>
+                <%= link_to '編集', edit_post_image_path(@post_image.id), class:"btn btn-outline-success" %>
+
+                <%= link_to '削除', post_image_path(@post_image.id), method: :delete, class:"btn btn-outline-danger ml-2" %>
               </p>
               <% end %>
 
           </div>
-
         </div>
+      </div>
 
         <!--コメント投稿-->
+      <div class="col-md-3 mt-5">
         <div>
-          <%= form_with model:[@post_image,@post_comment], local: true do |f| %>
+          <%= form_with model:[@post_image,@post_comment] do |f| %>
           <div>
-            <%= f.text_area :comment, class:"w-75", placeholder:"ここにコメントを入力してね！" %>
+            <%= f.text_area :comment, class:"w-100", placeholder:"ここにコメントを入力してね！" %><br>
             <%= f.submit '送信' %>
           </div>
           <% end %>
         </div>
 
         <!--コメント一覧-->
-        <div>
-          <h6><strong>コメント一覧</strong></h6>
-          <% @post_image.post_comments.reverse.each do |post_comment| %>
-          <hr>
-          <div class="row">
-
-            <div class="col-md-2 text-center">
-              <%= link_to user_path(post_comment.user.id) do %>
-                <%= attachment_image_tag post_comment.user, :profile_image, fallback:"no-image.jpg", size:"100x100", class:"rounded-circle" %>
-                <p>
-                  <%= post_comment.user.name %>
-                </p>
-              <% end %>
-            </div>
-
-            <div class="col-md-6">
-              <p>
-                <%= l post_comment.created_at %>
-              </p>
-              <p>
-                <%= post_comment.comment %>
-              </p>
-            </div>
-
-            <div class="col-md-2">
-              <% if post_comment.user == current_user %>
-                <%= link_to 'コメントを消す', post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger" %>
-              <% end %>
-            </div>
-
-          </div>
-          <% end %>
+        <div class="comments-area" ">
+         
+          <%= render 'post_comments/post_comment', post_image: @post_image %>
         </div>
+      </div>
 
-      <% else %>
 
-        <!--ログインしていない時-->
+    <% else %>
+
+      <!--ログインしていない時-->
+      <div class="col-md-12">
+
+        <!--複数枚の写真を表示 スライドショー適用-->
+        <% if @post_image.images.attached? %>
+          <div id="post-images">
+            <div class="theTarget">
+              <% @post_image.images.each do |image| %>
+                <%= image_tag image, size:"800x500" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
         <div class="row mt-1">
           <div class="col-md-5">
             <p>
@@ -151,8 +139,8 @@
             </p>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

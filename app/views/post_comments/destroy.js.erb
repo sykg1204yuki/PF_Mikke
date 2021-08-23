@@ -1,0 +1,8 @@
+<!--コメント数表示-->
+$('#post_image-<%= @post_image.id %> .comments-count').html('コメント数：<%= @post_image.post_comments.count %>件');
+
+<!--コメント一覧表示-->
+$('.comments-area').html('<%= j(render 'post_comments/post_comment', post_image: @post_image) %>');
+
+<!--コメント送信後入力欄を空にする-->
+$('textarea').val('');

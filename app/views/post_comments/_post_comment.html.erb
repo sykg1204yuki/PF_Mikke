@@ -1,0 +1,36 @@
+<h6><strong>コメント一覧</strong></h6>
+<% post_image.post_comments.reverse.each do |post_comment| %>
+<hr>
+<div class="row">
+  <div class="col-md-8">
+    <p>
+      <%= l post_comment.created_at %>
+    </p>
+  </div>
+  <div class="col-md-4 text-right">
+    <% if post_comment.user == current_user %>
+      <%= link_to '削除', post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger", remote: true %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 text-center">
+    <%= link_to user_path(post_comment.user.id), remote: true do %>
+      <%= attachment_image_tag post_comment.user, :profile_image, fallback:"no-image.jpg", size:"50x50", class:"rounded-circle" %>
+      <p>
+        <%= post_comment.user.name %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="col-md-8">
+    <p class="overflow-wrap">
+      <%= safe_join(post_comment.comment.split("\n"),tag(:br)) %>
+    </p>
+  </div>
+</div>
+
+
+
+<% end %>

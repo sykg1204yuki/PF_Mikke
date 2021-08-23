@@ -17,11 +17,12 @@
     </div>
     <div class="col-md-5">
       <div>
-        <p><strong>Introduction</strong></p>
+        <p><strong>自己紹介</strong></p>
         <p><%= @user.introduction %></p>
       </div>
       <hr>
-      <!--ここにフォロー・フォロワー数表示予定-->
+
+      <!--ここからフォロー・フォロワー数表示-->
       <div>
         <p>
           <%= link_to followings_user_path(@user.id) do %>
