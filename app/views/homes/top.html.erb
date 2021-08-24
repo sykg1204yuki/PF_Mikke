@@ -1,1 +1,46 @@
-<h1>トップ画面</h1>
+<div class="top-visual">
+  <div class="top-visual-logo text-center">
+    <h1>MIKKE!!</h1>
+    <p>〜小さな楽しみミッケ！！〜</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <%= link_to post_images_path, class:"btn btn-secondary w-100 py-4" do %>
+          <span>
+            <i class="fas fa-search fa-4x"></i>
+          </span>
+          <h3>投稿一覧</h3>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to new_user_session_path, class:"btn btn-success w-100 py-4" do %>
+          <span>
+            <i class="fas fa-sign-in-alt fa-4x"></i>
+          </span>
+          <h3>ログイン</h3>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to new_user_registration_path, class:"btn btn-primary w-100 py-4" do %>
+          <span>
+            <i class="fas fa-user fa-4x"></i>
+          </span>
+          <h3>新規登録</h3>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container about-area bg-light">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center">サイトについて</h2>
+      <hr>
+      <p></p>
+    </div>
+  </div>
+</div>

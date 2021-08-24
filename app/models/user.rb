@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :name, presence: true, uniqueness: true, length: {in: 2..20}
+  validates :introduction, length: {maximum: 200}
+
+
   # 投稿機能リレーション
   has_many :post_images, dependent: :destroy
 
@@ -49,7 +54,7 @@ class User < ApplicationRecord
 
   # プロフィール画像設定
   attachment :profile_image
-  
+
   # ユーザー検索のためのメソッド
   def self.search(search)
     if search
@@ -57,7 +62,7 @@ class User < ApplicationRecord
     else
       all
     end
-  end 
+  end
 
 
 

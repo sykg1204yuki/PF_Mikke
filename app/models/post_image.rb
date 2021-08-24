@@ -8,6 +8,9 @@ class PostImage < ApplicationRecord
 
   has_many_attached :images
 
+  validates :title, presence: true, length: {maximum: 50}
+  validates :caption, presence: true, length: {maximum: 200}
+
   # 引数で渡されたユーザidがFavoritesテーブル内に存在するかどうか
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?

@@ -61,11 +61,12 @@
           <!--投稿内容-->
           <div class="col-md-6 mt-2">
               <p>
-                タイトル：<%= @post_image.title %>
+                <span class="alert-dark p-1">Title</span><br>
+                <%= @post_image.title %>
               </p>
               <hr>
               <p>
-                本文：<%= @post_image.caption %>
+                <%= @post_image.caption %>
               </p>
               <hr>
               <% if @post_image.user == current_user %>
