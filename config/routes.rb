@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     resource :discovers, only: [:create, :destroy]
   end
 
-  resources :areas, except: [:show]
+  resources :areas, only: [:index]
   get '/map_areas' => 'areas#map_area'
   get '/searches' => 'searches#search'
-  
+
 
 end

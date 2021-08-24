@@ -1,4 +1,7 @@
 class PostImagesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
+  before_action :ensure_current_user, only: [:edit, :upadate]
 
   # 新規投稿画面表示
   def new
@@ -51,12 +54,21 @@ class PostImagesController < ApplicationController
 
   end
 
+
   # 投稿のストロングパラメータ
   private
 
   def post_image_params
     params.require(:post_image).permit({images: []}, :title, :caption, :area_id)
 
+  end
+
+  def ensure_current_user
+    post_image = PostImage.find(params[:id])
+      if post_image.user != current_user
+        redirect_to user_path(current_user)
+
+      end
   end
 
 

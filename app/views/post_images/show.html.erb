@@ -81,21 +81,24 @@
       </div>
 
         <!--コメント投稿-->
-      <div class="col-md-3 mt-5">
+      <div class="col-md-3 mt-3">
         <div>
           <%= form_with model:[@post_image,@post_comment] do |f| %>
           <div>
-            <%= f.text_area :comment, class:"w-100", placeholder:"ここにコメントを入力してね！" %><br>
-            <%= f.submit '送信' %>
+            <%= f.text_area :comment, rows:'3', class:"w-100", placeholder:"ここにコメントを入力してね！" %><br>
+            <%= f.submit '送信', class:"btn btn-primary w-50" %>
           </div>
           <% end %>
         </div>
 
         <!--コメント一覧-->
-        <div class="comments-area" ">
-         
-          <%= render 'post_comments/post_comment', post_image: @post_image %>
+        <div class="mt-4">
+          <h6><strong>コメント一覧</strong></h6>
+          <div class="comments-area" style="height:600px; width:350px; overflow-y:scroll;">
+            <%= render 'post_comments/post_comment', post_image: @post_image %>
+          </div>
         </div>
+
       </div>
 
 

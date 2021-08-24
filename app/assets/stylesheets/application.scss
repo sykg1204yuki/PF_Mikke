@@ -49,6 +49,13 @@
 }
 
 
+// 投稿内容等のボックス内での文字折り返し設定
+p.overflow-wrap{
+  overflow-wrap: break-word;
+}
+
+
+
 
 // ここからJavaScript関連
 

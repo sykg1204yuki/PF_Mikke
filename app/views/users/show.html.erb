@@ -25,13 +25,13 @@
       <!--ここからフォロー・フォロワー数表示-->
       <div>
         <p>
-          <%= link_to followings_user_path(@user.id) do %>
-            フォロー数：<%= @user.followings.count %>
-          <% end %>
+          <span id="followings-count">
+            <%= render 'relationships/followings_count', user: @user %>
+          </span>
           |
-          <%= link_to followers_user_path(@user.id) do %>
-            フォロワー数：<%= @user.followers.count %>
-          <% end %>
+          <span id="followers-count-<%= @user.id %>">
+            <%= render 'relationships/followers_count', user: @user %>
+          </span>
         </p>
       </div>
     </div>
@@ -81,13 +81,13 @@
       <% if @user == current_user %>
         <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-outline-secondary w-100" %>
       <% else %>
-        <% if current_user.followings?(@user) %>
-          <%= link_to 'フォローをはずす', user_relationships_path(@user.id), method: :delete, class:"btn btn-outline-primary w-100" %>
-        <% else %>
-          <%= link_to 'フォローする', user_relationships_path(@user.id), method: :post, class:"btn btn-outline-success w-100" %>
-        <% end %>
-      <% end %>
 
+        <div id="relatinship-<%= @user.id %>">
+          <span id="followings-btn-<%= @user.id %>">
+            <%= render 'relationships/followings?', user: @user %>
+          </span>
+        </div>
+      <% end %>
     </div>
   </div>
 

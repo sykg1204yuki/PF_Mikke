@@ -1,44 +1,44 @@
 class AreasController < ApplicationController
 
-  def new
-    @area = Area.new
-    @areas = Area.all
+  # def new
+  #   @area = Area.new
+  #   @areas = Area.all
 
-  end
+  # end
 
-  def create
-    area = Area.new(area_params)
-    area.save
-    redirect_to new_area_path
+  # def create
+  #   area = Area.new(area_params)
+  #   area.save
+  #   redirect_to new_area_path
 
-  end
+  # end
 
   def index
     @areas = Area.all
 
   end
 
-  def edit
-    @area = Area.find(params[:id])
-  
-  end
+  # def edit
+  #   @area = Area.find(params[:id])
 
-  def update
-    area = Area.find(params[:id])
-    area.update(area_params)
-    redirect_to new_area_path
-    
-  end
-  
-  def destroy
-    area = Area.find(params[:id])
-    area.destroy
-    redirect_to new_area_path
-    
-  end 
-  
+  # end
+
+  # def update
+  #   area = Area.find(params[:id])
+  #   area.update(area_params)
+  #   redirect_to new_area_path
+
+  # end
+
+  # def destroy
+  #   area = Area.find(params[:id])
+  #   area.destroy
+  #   redirect_to new_area_path
+
+  # end
+
   def map_area
-  end 
+  end
 
   private
 

@@ -13,29 +13,7 @@
     <% if user_signed_in? %>
       <!--ログイン時-->
       <!--エリア検索-->
-      <div class="col-md-2" style="height:600px; overflow-y:scroll;">
-        <table class="table table-border" height="600">
-          <thead>
-            <tr>
-              <th>エリア検索</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <%= link_to '全件', post_images_path %>
-              </td>
-            </tr>
-            <% @areas.each do |area| %>
-            <tr>
-              <td>
-                <%= link_to area.area_name, searches_path('search[areaid]': area.id) %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render 'areas/areas_index', areas: @areas %>
 
       <div class="col-md-10">
         <div class="container">

@@ -15,17 +15,21 @@
               <% end %>
             </td>
             <td>
-              フォロー数：<%= user.followings.count %>
+              <span id="followings-count-<%= user.id %>">
+                <%= render 'relationships/followings_count', user: user %>
+              </span>
               |
-              フォロワー数：<%= user.followers.count %>
+              <span id="followers-count-<%= user.id %>">
+                <%= render 'relationships/followers_count', user: user %>
+              </span>
             </td>
             <td>
               <% if user != current_user %>
-                <% if current_user.followings?(user) %>
-                  <%= link_to 'フォローをはずす', user_relationships_path(user.id), method: :delete, class:"btn btn-outline-primary" %>
-                <% else %>
-                  <%= link_to 'フォローする', user_relationships_path(user.id), method: :post, class:"btn btn-outline-success" %>
-                <% end %>
+                <div id="followings-btn-<%= user.id %>">
+
+                  <%= render 'relationships/followings?', user: user %>
+
+                </div>
               <% end %>
             </td>
           </tr>
