@@ -32,6 +32,8 @@
           <span id="followers-count-<%= @user.id %>">
             <%= render 'relationships/followers_count', user: @user %>
           </span>
+          |
+          <%= link_to '❤投稿一覧️', favorites_user_path(@user) %>
         </p>
       </div>
     </div>

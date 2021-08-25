@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+
+  </div>
+</div>
+<% @favorite_post_images.reverse.each do |post_image| %>
+  <%= link_to post_image_path(post_image.id) do %>
+    <!--複数枚の写真を表示-->
+    <% if post_image.images.attached? %>
+      <div id="post-images">
+        <div class="theTarget">
+          <!-- ↑↑↑ eachで繰り返し処理をしているので、「id」ではなく「class」を指定-->
+          <% post_image.images.each do |image| %>
+            <%= image_tag image, size:"300x300" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <p>
+    投稿日時：<%= l post_image.created_at %>
+    |
+    撮影場所：<%= post_image.area.area_name %>
+  </p>
+
+  <%= link_to user_path(post_image.user.id) do %>
+    <div class="text-center">
+      <%= attachment_image_tag post_image.user, :profile_image, fallback:"no-image.jpg", size:"150x150", class:"rounded-circle" %>
+      <p><%= post_image.user.name %></p>
+    </div>
+  <% end %>
+
+  <p>
+    <span class="alert-dark p-1">Title</span><br>
+    <%= post_image.title %>
+  </p>
+
+<% end %>
+
