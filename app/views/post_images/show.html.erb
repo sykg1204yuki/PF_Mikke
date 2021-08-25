@@ -20,7 +20,7 @@
         <% end %>
 
         <div class="row mt-1">
-          <div class="col-md-6">
+          <div class="col-md-7">
             <p>
               投稿日時：<%= l @post_image.created_at %>
               |
@@ -28,7 +28,7 @@
             </p>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-5">
             <p id="post_image-<%= @post_image.id %>">
               <span class="comments-count">
                 コメント数：<%= @post_image.post_comments.count %>件

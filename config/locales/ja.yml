@@ -3,3 +3,6 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+  errors:
+    messages:
+      not_saved: "失敗"
