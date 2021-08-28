@@ -17,6 +17,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+body{
+  background-color:#f0ffff;
+}
+
 // トップページCSS
 .top-visual{
   width:100%;
@@ -24,11 +28,11 @@
   background-image:url('top-visual.jpg');
   background-size:cover;
   background-position:center;
-  
+
 }
 
 .top-visual-logo{
-  padding:200px 0 100px;
+  padding:150px 0 70px;
   font-family: 'Skia-Regular_Black',sans-serif;
 }
 
@@ -41,22 +45,13 @@
 }
 
 .about-area{
-  margin-top:70px;
+  margin-top:100px;
 }
 
 
-// 各ページの上下部分のCSS
-.head-visual{
+// ログイン時のヘッダー・フッター
+header, footer{
   width:100%;
-  height:100px;
-  background-image:image-url("green2.jpg");
-  background-size:cover;
-  background-position:center;
-}
-
-.foot-visual{
-  width:100%;
-  height:100px;
   background-image:image-url("green2.jpg");
   background-size:cover;
   background-position:center;

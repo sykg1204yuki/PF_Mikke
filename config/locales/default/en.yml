@@ -31,3 +31,19 @@
 
 en:
   hello: "Hello world"
+  dictionary:
+    submit:
+      sign up: Sign Up
+      sign in: Log In
+      Search: Search
+      update: Update
+      create: Create
+      post: Post
+      keyword search: Keyword Search
+      Please enter a comment!!: Enter a comment!!
+  time:
+    formats:
+      default: "%b %dth, %Y %H:%M"
+
+
+

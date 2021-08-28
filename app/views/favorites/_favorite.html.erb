@@ -1,9 +1,9 @@
 <% if post_image.favorited_by?(current_user) %>
   <%= link_to post_image_favorites_path(post_image.id), method: :delete, remote: true do %>
-    ❤<%= post_image.favorites.count %>
+    <i class="fas fa-heart text-danger"></i><%= post_image.favorites.count %>
   <% end %>
 <% else %>
   <%= link_to post_image_favorites_path(post_image.id), method: :post, remote: true do %>
-    ♡<%= post_image.favorites.count %>
+    <i class="far fa-heart text-danger"></i><%= post_image.favorites.count %>
   <% end %>
 <% end %>

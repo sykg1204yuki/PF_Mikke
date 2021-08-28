@@ -1,12 +1,15 @@
-<div class="container">
-  
+<div class="container mt-2 mb-5">
+
   <!--ユーザー検索フォーム-->
-  <%= form_tag(users_path, :method => "get") do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag '検索', :name => nil, class:"button is-info" %>
-  <% end %>
-  
-  <h2>ユーザー一覧画面</h2>
+  <div class="text-right">
+    <%= form_tag(users_path, :method => "get") do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag t('dictionary.submit.Search'), :name => nil, class:"button is-info" %>
+    <% end %>
+  </div>
+
+
+  <h2><strong><%= t('dictionary.title_head.Users List') %></strong></h2>
 
   <div class="row">
     <% @users.each do |user| %>

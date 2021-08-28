@@ -1,97 +1,111 @@
-<div class="container">
+<div class="container mt-5">
 
   <!--ログインユーザーかどうかで表示を変更-->
   <% if @user == current_user %>
-    <h2><strong>マイページ</strong></h2>
+    <h2><strong><%= t('dictionary.title_head.My Page') %></strong></h2>
   <% else %>
-    <h2><strong><%= @user.name %>のページ</strong></h2>
+    <h2><strong><%= @user.name %> <%= t('dictionary.title_head.user_page') %></strong></h2>
   <% end %>
 
 
   <!--ここからプロフィール-->
-  <h6><strong>プロフィール</strong></h6>
-  <div class="row">
-    <div class="col-md-3 text-center">
-      <%= attachment_image_tag @user, :profile_image, fallback:"no-image.jpg", size:"200x200", class:"rounded-circle" %><br>
-      <%= @user.name %>
-    </div>
-    <div class="col-md-5">
-      <div>
-        <p><strong>自己紹介</strong></p>
-        <p><%= @user.introduction %></p>
-      </div>
+  <div class="card">
+    <div class="card-body">
+      <h4><strong><%= t('dictionary.title_head.Profile') %></strong></h4>
       <hr>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <%= attachment_image_tag @user, :profile_image, fallback:"no-image.jpg", size:"200x200", class:"rounded-circle" %>
+          <p class="overflow-wrap">
+            <%= safe_join(@user.name.split("\n"),tag(:br)) %>
+          </p>
 
-      <!--ここからフォロー・フォロワー数表示-->
-      <div>
-        <p>
-          <span id="followings-count">
-            <%= render 'relationships/followings_count', user: @user %>
-          </span>
-          |
-          <span id="followers-count-<%= @user.id %>">
-            <%= render 'relationships/followers_count', user: @user %>
-          </span>
-          |
-          <%= link_to '❤投稿一覧️', favorites_user_path(@user) %>
-        </p>
-      </div>
-    </div>
+        </div>
+        <div class="col-md-5">
+          <div>
+            <p><strong><%= t('dictionary.title_head.Introduction') %></strong></p>
+            <p class="overflow-wrap">
+              <%= safe_join(@user.introduction.split("\n"),tag(:br)) %>
+            </p>
+          </div>
+          <hr>
 
-    <!--ヘッダーと同じリンクボタン-->
-    <div class="col-md-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <%= link_to new_post_image_path do %>
-              <div class="bg-light text-secondary text-center">
-                <i class="fas fa-camera fa-4x"></i>
-                <p>新規投稿</p>
-              </div>
-            <% end %>
+          <!--ここからフォロー・フォロワー数表示-->
+          <div>
+            <p>
+              <span id="followings-count">
+                <%= render 'relationships/followings_count', user: @user %>
+              </span>
+              |
+              <span id="followers-count-<%= @user.id %>">
+                <%= render 'relationships/followers_count', user: @user %>
+              </span>
+              |
+              <%= link_to favorites_user_path(@user) do  %>
+                <i class="fas fa-heart text-danger"></i><%= t('dictionary.title_head.Favorites list') %>
+              <% end %>
+            </p>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-6">
-            <%= link_to post_images_path do %>
-              <div class="bg-light text-secondary text-center">
-                <i class="fas fa-search fa-4x"></i>
-                <p>探索</p>
+        <!--ヘッダーと同じリンクボタン-->
+        <div class="col-md-4">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <%= link_to new_post_image_path do %>
+                  <div class="bg-light text-secondary text-center">
+                    <i class="fas fa-camera fa-4x"></i>
+                    <p><%= t('dictionary.title_head.New Post') %></p>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
-          </div>
+            </div>
 
-          <div class="col-md-6">
-            <%= link_to users_path do %>
-              <div class="bg-light text-secondary text-center">
-                <i class="fas fa-users fa-4x"></i>
-                <p>ユーザー一覧</p>
+            <div class="row">
+              <div class="col-md-6">
+                <%= link_to post_images_path do %>
+                  <div class="bg-light text-secondary text-center">
+                    <i class="fas fa-search fa-4x"></i>
+                    <p><%= t('dictionary.title_head.Search') %></p>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
-          </div>
 
+              <div class="col-md-6">
+                <%= link_to users_path do %>
+                  <div class="bg-light text-secondary text-center">
+                    <i class="fas fa-users fa-4x"></i>
+                    <p><%= t('dictionary.title_head.Users List') %></p>
+                  </div>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--ここからプロフィール編集ボタンorフォロー・フォロワーボタン-->
+      <div class="row">
+        <div class="col-md-12">
+          <% if @user == current_user %>
+            <%= link_to t('dictionary.button.Profile Edit'), edit_user_path(@user.id), class:"btn btn-outline-secondary w-100" %>
+          <% else %>
+            <!--フォロー・フォロワーボタン-->
+            <div id="relatinship-<%= @user.id %>">
+              <span id="followings-btn-<%= @user.id %>">
+                <%= render 'relationships/followings?', user: @user %>
+              </span>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 
 
-  <!--ここからプロフィール編集ボタンorフォロー・フォロワーボタン-->
-  <div class="row">
-    <div class="col-md-12">
-      <% if @user == current_user %>
-        <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-outline-secondary w-100" %>
-      <% else %>
-
-        <div id="relatinship-<%= @user.id %>">
-          <span id="followings-btn-<%= @user.id %>">
-            <%= render 'relationships/followings?', user: @user %>
-          </span>
-        </div>
-      <% end %>
-    </div>
-  </div>
 
 
   <!--ここからユーザー投稿一覧-->
@@ -113,14 +127,15 @@
             <% end %>
           <% end %>
           <p>
-            投稿日：<%= l post_image.created_at %>
+            <%= t('dictionary.title_head.Date') %>：<%= l post_image.created_at %>
             |
-            コメント数：<%= post_image.post_comments.count %>件
+            <%= t('dictionary.title_head.Comments') %>：<%= post_image.post_comments.count %>件
           </p>
           <p>
             <span class="alert-dark p-2">Title</span><%= post_image.title %>
           </p>
         </div>
+        <hr>
       </div>
     <% end %>
   </div>

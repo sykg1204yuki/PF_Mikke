@@ -15,25 +15,25 @@ describe User do
     it "nameがない場合は登録できないこと" do
       user = FactoryBot.build(:user, name: nil)
       user.valid?
-      expect(user.errors[:name]).to include("can't be blank")
+      expect(user.errors[:name]).to include("を入力してください")
     end
 
     it "emailがない場合は登録できないこと" do
       user = FactoryBot.build(:user, email: nil)
       user.valid?
-      expect(user.errors[:email]).to include("can't be blank")
+      expect(user.errors[:email]).to include("を入力してください")
     end
 
     it "passwordがない場合は登録できないこと" do
       user = FactoryBot.build(:user, password: nil)
       user.valid?
-      expect(user.errors[:password]).to include("can't be blank")
+      expect(user.errors[:password]).to include("を入力してください")
     end
 
     it "encrypted_passwordがない場合は登録できないこと" do
-      user = build(:user, encrypted_password: nil)
+      user = FactoryBot.build(:user, encrypted_password: nil)
       user.valid?
-      expect(user.errors[:encrypted_password]).to include("can't be blank")
+      expect(user.errors[:encrypted_password]).to include("を入力してください")
     end
 
 
@@ -48,11 +48,20 @@ describe User do
 
 
     # 確認ようパスワードが必要であるテスト
-    it "passwordが存在してもencrypted_passwordがない場合は登録できないこと" do
+    it "passwordとencrypted_passwordがない場合は登録できないこと" do
+
       user = FactoryBot.build(:user, encrypted_password: "")
       user.valid?
-      expect(user.errors[:encrypted_password]).to include("を入力してください", "は7文字以上で入力してください")
+      expect(user.errors[:encrypted_password]).to include("を入力してください", "は6文字以上で入力してください")
     end
+
+
+    it "passwordとpassword_confirmationが一致しない場合は登録できないこと" do
+      user= build(:user, password_confirmation: "123457")
+      user.valid?
+      expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
+    end
+
 
 
     # パスワードの文字数テスト

@@ -1,23 +1,22 @@
-<div class="col-md-2" style="height:600px; overflow-y:scroll;">
-  <table class="table table-border" height="600">
-    <thead>
-      <tr>
-        <th>エリア検索</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <%= link_to '全件', post_images_path %>
-        </td>
-      </tr>
-      <% areas.each do |area| %>
-      <tr>
-        <td>
-          <%= link_to area.area_name, searches_path('search[areaid]': area.id) %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+
+<table class="table table-border" height="600">
+  <thead>
+    <tr>
+      <th><%= t('dictionary.title_head.Area Search') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to t('dictionary.link.All posts'), post_images_path %>
+      </td>
+    </tr>
+    <% areas.each do |area| %>
+    <tr>
+      <td>
+        <%= link_to area.area_name, searches_path('search[areaid]': area.id) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

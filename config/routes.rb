@@ -3,17 +3,15 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
   resources :users, only: [:index, :show, :edit, :update] do
-    
-    # フォロー・フォロワー機能ルーティング
     resource :relationships, only: [:create, :destroy]
     get :followings, on: :member
     get :followers, on: :member
-    
-    # 「いいね」した投稿検索機能ルーティング
     member do
       get :favorites
-    end 
+    end
   end
+
+
 
   resources :post_images do
     resources :post_comments, only: [:create, :destroy]
@@ -24,6 +22,12 @@ Rails.application.routes.draw do
   resources :areas, only: [:index]
   get '/map_areas' => 'areas#map_area'
   get '/searches' => 'searches#search'
+  
+  
+  scope '(:locale)', locale: /#{I18n.available_locales.map(&:to_s).join('|')}/ do
+    # For details on the DSL available within this file, see
+    resources :resource_users, :resource_post_images, :resource_areas, :devise_for_users
+  end
 
 
 end

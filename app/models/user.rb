@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: {in: 2..20}
+  validates :encrypted_password, presence:true, length: {minimum: 6}
   validates :introduction, length: {maximum: 200}
 
 

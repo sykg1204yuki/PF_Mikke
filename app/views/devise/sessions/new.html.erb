@@ -1,28 +1,32 @@
+<header>
+  <%= render 'homes/top_header' %>
+</header>
+
 <div class="container my-5">
   <div class="row">
     <div class="col-md-6">
-      <h3><strong>ログイン</strong></h3>
+      <h3><strong><%= t('dictionary.title_head.Sign In') %></strong></h3>
 
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
+        <div class="field mt-2">
+          <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"w-100" %>
         </div>
 
-        <div class="field">
-          <%= f.label :パスワード %><br />
+        <div class="field mt-2">
+          <%= f.label :password %><br />
           <%= f.password_field :password, autocomplete: "current-password", class:"w-100" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div class="field">
+          <div class="field mt-2">
             <%= f.check_box :remember_me %>
-            <%= f.label :パスワードを保存しますか？ %>
+            <%= f.label t('devise.passwords.new.save_password') %>
           </div>
         <% end %>
 
-        <div class="actions">
-          <%= f.submit "ログイン", class:"btn btn-success" %>
+        <div class="actions mt-2">
+          <%= f.submit t('dictionary.submit.sign in'), class:"btn btn-success" %>
         </div>
       <% end %>
 

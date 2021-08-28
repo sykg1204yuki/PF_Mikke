@@ -1,9 +1,9 @@
 <% if post_image.discovered_by?(current_user) %>
   <%= link_to post_image_discovers_path(post_image.id), method: :delete, remote: true do %>
-    ⭐<%= post_image.discovers.count %>
+    <i class="fas fa-star text-warning"></i><%= post_image.discovers.count %>
   <% end %>
 <% else %>
   <%= link_to post_image_discovers_path(post_image.id), method: :post, remote: true do %>
-    ☆<%= post_image.discovers.count %>←みっけ！！
+    <i class="fas fa-search"></i><%= post_image.discovers.count %>←<%= t('dictionary.titlle_head.Mikke!!') %>
   <% end %>
 <% end %>

@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container my-5">
   <div class="row">
     <div class="col-md-12">
-      <h2><strong>投稿編集</strong></h2>
+      <h2><strong><%= t('dictionary.title_head.Post Edit') %></strong></h2>
 
       <%= form_with model: @post_image, local: true do |f| %>
         <div>
@@ -20,7 +20,7 @@
         </div>
 
         <div>
-          <%= f.submit '更新', class:"btn btn-primary" %>
+          <%= f.submit t('dictionary.submit.update'), class:"btn btn-primary" %>
         </div>
 
       <% end %>

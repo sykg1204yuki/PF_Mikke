@@ -1,36 +1,42 @@
+<header>
+  <%= render 'homes/top_header' %>
+</header>
+
+
 <div class="container my-5">
   <div class="row">
     <div class="col-md-6">
-      <h3><strong>ユーザー登録</strong></h3>
+      <h3><strong><%= t('dictionary.title_head.Sign Up') %></strong></h3>
 
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="field">
-          <%= f.label :名前 %><br />
+        <!--名前入力フォーム-->
+        <div class="field mt-2">
+          <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"w-75" %>
         </div>
 
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
+        <div class="field mt-2">
+          <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"w-100" %>
         </div>
 
-        <div class="field">
-          <%= f.label :パスワード %>
+        <div class="field mt-2">
+          <%= f.label :password %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <em>(<%= @minimum_password_length %> <%= t('activerecord.attributes.user.characters') %>)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class:"w-100" %>
         </div>
 
-        <div class="field">
-          <%= f.label :パスワード確認 %><br />
+        <div class="field mt-2">
+          <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-100" %>
         </div>
 
         <div class="actions mt-2">
-          <%= f.submit "ユーザー登録", class:"btn btn-primary" %>
+          <%= f.submit t('dictionary.submit.sign up'), class:"btn btn-primary" %>
         </div>
       <% end %>
 

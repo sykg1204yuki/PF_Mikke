@@ -1,12 +1,12 @@
-<div class="container mt-2">
-  <h2>エリア選択画面</h2>
+<div class="container my-5">
+  <h2><strong><%= t('dictionary.title_head.Area Exploration') %></strong></h2>
   <div class="row text-center">
     <div class="col-md-6 offset-md-3">
-      <p>探索したいエリアをクリック！！</p>
+      <p><%= t('dictionary.title_head.Click the area you want to explore!!') %></p>
     </div>
     <div class="col-md-3">
       <%=link_to post_images_path, class:"btn btn-outline-secondary" do %>
-        <i class="fas fa-arrow-circle-right"></i>投稿全件表示
+        <i class="fas fa-arrow-circle-right"></i><%= t('dictionary.button.All posts') %>
       <% end %>
     </div>
   </div>

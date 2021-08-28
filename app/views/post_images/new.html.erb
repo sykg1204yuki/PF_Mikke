@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container my-5">
   <div class="row">
     <div class="col-md-12">
-      <h2><strong>新規投稿</strong></h2>
+      <h2><strong><%= t('dictionary.title_head.New Post') %></strong></h2>
 
       <%= form_with model: @post_image, local: true do |f| %>
         <div>
@@ -16,7 +16,7 @@
 
         <div>
           <%= f.label :エリア %><br>
-          <%= f.collection_select(:area_id, Area.all, :id, :area_name, prompt: '-- 選択してください --') %>
+          <%= f.collection_select(:area_id, Area.all, :id, :area_name, prompt: t('dictionary.title_head.Select')) %>
         </div>
 
         <div>
@@ -25,7 +25,7 @@
         </div>
 
         <div>
-          <%= f.submit '投稿', class:"btn btn-primary" %>
+          <%= f.submit t('dictionary.submit.post'), class:"btn btn-primary" %>
         </div>
 
       <% end %>

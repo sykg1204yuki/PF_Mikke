@@ -1,19 +1,23 @@
-<div class="container">
 
-  <!--キーワード検索フォーム-->
-  <%= form_tag(post_images_path, :method => "get") do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag 'キーワード検索', :caption => nil, class:"button is-info" %>
-  <% end %>
-  <h2><strong>投稿一覧</strong></h2>
+<!--ログイン時-->
+<% if user_signed_in? %>
+  <div class="container mt-2 mb-5">
 
-  <div class="row">
+    <!--キーワード検索フォーム-->
+    <div class="text-right">
+      <%= form_tag(post_images_path, :method => "get") do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag t('dictionary.submit.keyword search'), :caption => nil, class:"button is-info" %>
+      <% end %>
+    </div>
 
+    <h2><strong><%= t('dictionary.title_head.Posts List') %></strong></h2>
 
-    <% if user_signed_in? %>
-      <!--ログイン時-->
+    <div class="row">
       <!--エリア検索-->
-      <%= render 'areas/areas_index', areas: @areas %>
+      <div class="col-md-2" style="height:600px; overflow-y:scroll;">
+        <%= render 'areas/areas_index', areas: @areas %>
+      </div>
 
       <div class="col-md-10">
         <div class="container">
@@ -37,26 +41,40 @@
           </div>
         </div>
       </div>
-
-    <% else %>
-      <!--ログアウト時-->
-      <!--投稿一覧-->
-        <% @post_images.reverse.each do |post_image| %>
-          <div class="col-md-3 p-1">
-            <% if post_image.images.attached? %>
-              <%= link_to post_image_path(post_image.id) do %>
-                <div id="logoutIndex-post-images">
-                  <div class="index-theTarget">
-                    <% post_image.images.each do |image| %>
-                      <%= image_tag image, size:"280x280" %>
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-    <% end %>
-
+    </div>
   </div>
-</div>
+
+<% else %>
+  <!--ログアウト時-->
+  <header>
+    <%= render 'homes/top_header' %>
+  </header>
+
+
+
+  <!--投稿一覧-->
+  <div class="container my-5">
+
+    <h2><strong><%= t('dictionary.title_head.Posts List') %></strong></h2>
+
+    <div class="row">
+      <% @post_images.reverse.each do |post_image| %>
+        <div class="col-md-3 p-1">
+          <% if post_image.images.attached? %>
+            <%= link_to post_image_path(post_image.id) do %>
+              <div id="logoutIndex-post-images">
+                <div class="index-theTarget">
+                  <% post_image.images.each do |image| %>
+                    <%= image_tag image, size:"280x280" %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+<% end %>

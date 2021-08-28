@@ -1,4 +1,4 @@
 
 <%= link_to followers_user_path(user.id) do %>
-  フォロワー数：<%= user.followers.count %>
+  <%= t('dictionary.title_head.Followers') %>：<%= user.followers.count %>
 <% end %>

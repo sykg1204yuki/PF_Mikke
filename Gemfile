@@ -84,3 +84,6 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+# rails-i18n
+gem 'rails-i18n'

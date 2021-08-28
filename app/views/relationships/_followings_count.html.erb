@@ -1,3 +1,3 @@
 <%= link_to followings_user_path(user.id) do %>
-  フォロー数：<%= user.followings.count %>
+  <%= t('dictionary.title_head.Follows') %>：<%= user.followings.count %>
 <% end %>

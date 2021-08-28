@@ -1,0 +1,61 @@
+# 日時表示のデフォルト設定
+ja:
+  dictionary:
+    title_head:     # 画面タイトル・ヘッダー等
+      MIKKE!!: MIKKE!!
+      Mikke!!: ミッケ！！
+      Mikke little fun !!: ちいさな楽しみミッケ！！
+      Sign In: ログイン
+      Sign Up: 新規登録
+      My Page: マイページ
+      Users List: ユーザー一覧
+      Profile: プロフィール
+      Introduction: 自己紹介
+      Profile Edit: プロフィール編集
+      Follows: フォロー数
+      Followers: フォロワー数
+      Favorites list: いいね一覧
+      Posts List: 投稿一覧
+      Post Details: 投稿詳細
+      Date: 投稿日
+      Location: 撮影場所
+      Contributor: 投稿者
+      Comments: コメント数
+      New Post: 新規投稿
+      Post Edit: 投稿編集
+      Search: 探索
+      Area Exploration: エリア探索
+      Area Search: エリア検索
+      Log Out: ログアウト
+      About: このサイトについて
+      Follows List: フォロー一覧
+      Followers List: フォロワー一覧
+      Favorites List: いいね❤️一覧
+      Not Posts: 該当する投稿はありません
+      lists: の投稿一覧
+      Title: タイトル
+      Comments: コメント一覧
+      Click the area you want to explore!!: 探索したいエリアをクリック！！
+      Select: --選択してください--
+      user_page: のページ
+    link:
+      All posts: 全件
+    button:         #リンクボタン
+      Profile Edit: プロフィール編集
+      Follow: フォローする
+      Unfollow: フォロー済
+      Edit: 編集
+      Delete: 削除
+      All posts: 投稿全件表示
+    submit:         #フォーム内ボタン
+      sign up: 登録
+      sign in: ログイン
+      Search: 検索
+      update: 更新
+      create: 送信
+      post: 投稿
+      keyword search: キーワード検索
+      Please enter a comment!!: コメント入力してね！！
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"

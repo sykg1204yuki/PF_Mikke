@@ -1,11 +1,9 @@
-<div class="container">
-  <h2><strong>投稿詳細画面</strong></h2>
+<% if user_signed_in? %>
+<!--ログインしている時-->
+  <div class="container my-5">
+    <h2><strong><%= t('dictionary.title_head.Post Details') %></strong></h2>
 
-  <div class="row">
-
-    <% if user_signed_in? %>
-
-      <!--ログインしている時-->
+    <div class="row">
       <div class="col-md-9">
 
         <!--複数枚の写真を表示 スライドショー適用-->
@@ -22,16 +20,16 @@
         <div class="row mt-1">
           <div class="col-md-7">
             <p>
-              投稿日時：<%= l @post_image.created_at %>
+              <%= t('dictionary.title_head.Date') %>：<%= l @post_image.created_at %>
               |
-              撮影場所：<%= @post_image.area.area_name %>
+              <%= t('dictionary.title_head.Location') %>：<%= @post_image.area.area_name %>
             </p>
           </div>
 
           <div class="col-md-5">
             <p id="post_image-<%= @post_image.id %>">
               <span class="comments-count">
-                コメント数：<%= @post_image.post_comments.count %>件
+                <%= t('dictionary.title_head.Comments') %>：<%= @post_image.post_comments.count %>
               </span>
               |
               <!--「いいね」機能-->
@@ -53,27 +51,29 @@
             <%= link_to user_path(@post_image.user.id) do %>
               <div class="text-center">
                 <%= attachment_image_tag @post_image.user, :profile_image, fallback:"no-image.jpg", size:"150x150", class:"rounded-circle" %>
-                <p><%= @post_image.user.name %></p>
+                <p class="overflow-wrap">
+                  <%= safe_join(@post_image.user.name.split("\n"),tag(:br)) %>
+                </p>
               </div>
             <% end %>
           </div>
 
           <!--投稿内容-->
           <div class="col-md-6 mt-2">
-              <p>
-                <span class="alert-dark p-1">Title</span><br>
-                <%= @post_image.title %>
+              <p class="overflow-wrap">
+                <span class="alert-dark p-1"><%= t('dictionary.title_head.Title') %></span><br>
+                <%= safe_join(@post_image.title.split("\n"),tag(:br)) %>
               </p>
               <hr>
-              <p>
-                <%= @post_image.caption %>
+              <p class="overflow-wrap">
+                <%= safe_join(@post_image.caption.split("\n"),tag(:br)) %>
               </p>
               <hr>
               <% if @post_image.user == current_user %>
               <p>
-                <%= link_to '編集', edit_post_image_path(@post_image.id), class:"btn btn-outline-success" %>
+                <%= link_to t('dictionary.button.Edit'), edit_post_image_path(@post_image.id), class:"btn btn-outline-success" %>
 
-                <%= link_to '削除', post_image_path(@post_image.id), method: :delete, class:"btn btn-outline-danger ml-2" %>
+                <%= link_to t('dictionary.button.Delete'), post_image_path(@post_image.id), method: :delete, class:"btn btn-outline-danger ml-2" %>
               </p>
               <% end %>
 
@@ -86,26 +86,38 @@
         <div>
           <%= form_with model:[@post_image,@post_comment] do |f| %>
           <div>
-            <%= f.text_area :comment, rows:'3', class:"w-100", placeholder:"ここにコメントを入力してね！" %><br>
-            <%= f.submit '送信', class:"btn btn-primary w-50" %>
+            <%= f.text_area :comment, rows:'3', class:"w-100", placeholder:t('dictionary.submit.Please enter a comment!!') %><br>
+            <%= f.submit t('dictionary.submit.create'), class:"btn btn-primary w-50" %>
           </div>
           <% end %>
         </div>
 
         <!--コメント一覧-->
         <div class="mt-4">
-          <h6><strong>コメント一覧</strong></h6>
+          <h6><strong><%= t('dictionary.title_head.Comments') %></strong></h6>
           <div class="comments-area" style="height:600px; width:350px; overflow-y:scroll;">
             <%= render 'post_comments/post_comment', post_image: @post_image %>
           </div>
         </div>
 
       </div>
+    </div>
+  </div>
 
 
-    <% else %>
+<% else %>
 
-      <!--ログインしていない時-->
+  <!--ログインしていない時-->
+  <header>
+    <%= render 'homes/top_header' %>
+  </header>
+
+
+  <div class="container my-5">
+
+    <h2><strong><%= t('dictionary.title_head.Post Details') %></strong></h2>
+
+    <div class="row">
       <div class="col-md-12">
 
         <!--複数枚の写真を表示 スライドショー適用-->
@@ -122,7 +134,7 @@
         <div class="row mt-1">
           <div class="col-md-5">
             <p>
-              投稿日時：<%= l @post_image.created_at %>
+              <%= t('dictionary.title_head.Date') %>：<%= l @post_image.created_at %>
             </p>
           </div>
         </div>
@@ -139,13 +151,14 @@
           <!--投稿内容-->
           <div class="col-md-6 mt-2">
             <p>
-              タイトル：<%= @post_image.title %>
+              <%= t('dictionary.title_head.Title') %>：<%= @post_image.title %>
             </p>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
+
+<% end %>
 
 
