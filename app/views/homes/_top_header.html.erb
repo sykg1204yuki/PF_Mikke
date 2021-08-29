@@ -30,6 +30,13 @@
         <li>
           <%= link_to t('dictionary.title_head.Sign Up'), new_user_registration_path, class:"nav-link" %>
         </li>
+        <li>
+          <% if I18n.locale.to_s == "en" %>
+            <%= link_to '日本語', :locale => 'ja', class: "nav-link" %>
+          <% else %>
+            <%= link_to 'English', :locale => 'en', class: "nav-link" %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

@@ -32,6 +32,52 @@
 en:
   hello: "Hello world"
   dictionary:
+    title_head:     # 画面タイトル・ヘッダー等
+      MIKKE!!: MIKKE!!
+      Mikke!!: Mikke!!
+      Mikke little fun !!: Mikke little fun !!
+      Sign In: Sign In
+      Sign Up: Sign Up
+      My Page: My Page
+      Users List: Users List
+      Profile: Profile
+      Introduction: Introduction
+      Profile Edit: Profile Edit
+      Follows: Follows
+      Followers: Followers
+      Favorites list: Favorites list
+      Posts List: Post List
+      Post Details: Post Details
+      Date: Date
+      Location: Location
+      Contributor: Contributor
+      Comments: Comments
+      New Post: New Post
+      Post Edit: Post Edit
+      Search: Search
+      Area Exploration: Area Exploration
+      Area Search: Area Search
+      Log Out: Log Out
+      About: About
+      Follows List: Follows List
+      Followers List: Followers List
+      Favorites List: Favorites List
+      Not Posts: Not Posts
+      lists: lists
+      Title: Title
+      Comments list: Comments list
+      Click the area you want to explore!!: Click the area you want to explore!!
+      Select: --Select--
+      user_page: user_page
+    link:
+      All posts: All posts
+    button:         #リンクボタン
+      Profile Edit: Profile Edit
+      Follow: Follow
+      Unfollow: Unfollow
+      Edit: Edit
+      Delete: Delete
+      All posts: All posts
     submit:
       sign up: Sign Up
       sign in: Log In
