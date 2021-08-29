@@ -36,28 +36,26 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto">
                 <li>
-                  <%= link_to t('dictionary.title_head.My Page'), user_path(current_user), class:"nav-link" %>
+                  <%= link_to t('dictionary.title_head.My Page'), user_path(current_user), class:"nav-link mx-2" %>
                 </li>
                 <li>
-                  <%= link_to t('dictionary.title_head.New Post'), new_post_image_path, class:"nav-link" %>
+                  <%= link_to t('dictionary.title_head.New Post'), new_post_image_path, class:"nav-link mx-2" %>
                 </li>
                 <li>
-                  <%= link_to t('dictionary.title_head.Area Exploration'), map_areas_path, class:"nav-link" %>
+                  <%= link_to t('dictionary.title_head.Area Exploration'), map_areas_path, class:"nav-link mx-2" %>
                 </li>
                 <li>
-                  <%= link_to t('dictionary.title_head.Users List'), users_path, class:"nav-link" %>
+                  <%= link_to t('dictionary.title_head.Users List'), users_path, class:"nav-link mx-2" %>
                 </li>
                 <li>
                   <%= link_to t('dictionary.title_head.Log Out'), destroy_user_session_path, method: :delete, class:"nav-link" %>
                 </li>
                 <li>
-
-                    <% if I18n.locale.to_s == "en" %>
-                      <%= link_to('日本語', :locale => 'ja') %>
-                    <% else %>
-                      <%= link_to('English', :locale => 'en') %>
-                    <% end %>
-
+                  <% if I18n.locale.to_s == "en" %>
+                    <%= link_to('日本語', { :locale => 'ja' }, { class:"btn btn-light ml-3" }) %>
+                  <% else %>
+                    <%= link_to('English', { :locale => 'en' }, { class:"btn btn-light ml-3" }) %>
+                  <% end %>
                 </li>
               </ul>
             </div>

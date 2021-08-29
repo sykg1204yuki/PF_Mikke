@@ -1,48 +1,50 @@
-<div class="top-visual">
-  <%= render 'homes/top_header' %>
+<div class="TopPage mb-4">
+  <div class="top-visual">
+    <%= render 'homes/top_header' %>
 
-  <div class="top-visual-logo text-center">
-    <h1><%= t('dictionary.title_head.MIKKE!!') %></h1>
-    <p>〜<%= t('dictionary.title_head.Mikke little fun !!') %>〜</p>
-  </div>
+    <div class="top-visual-logo text-center">
+      <h1><%= t('dictionary.title_head.MIKKE!!') %></h1>
+      <p>〜<%= t('dictionary.title_head.Mikke little fun !!') %>〜</p>
+    </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <%= link_to post_images_path, class:"btn btn-secondary w-100 py-4" do %>
-          <span>
-            <i class="fas fa-search fa-4x"></i>
-          </span>
-          <h3><%= t('dictionary.title_head.Posts List') %></h3>
-        <% end %>
-      </div>
-      <div class="col-md-4">
-        <%= link_to new_user_session_path, class:"btn btn-success w-100 py-4" do %>
-          <span>
-            <i class="fas fa-sign-in-alt fa-4x"></i>
-          </span>
-          <h3><%= t('dictionary.title_head.Sign In') %></h3>
-        <% end %>
-      </div>
-      <div class="col-md-4">
-        <%= link_to new_user_registration_path, class:"btn btn-primary w-100 py-4" do %>
-          <span>
-            <i class="fas fa-user fa-4x"></i>
-          </span>
-          <h3><%= t('dictionary.title_head.Sign Up') %></h3>
-        <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <%= link_to post_images_path, class:"btn btn-secondary w-100 py-4" do %>
+            <span>
+              <i class="fas fa-search fa-4x"></i>
+            </span>
+            <h3><%= t('dictionary.title_head.Posts List') %></h3>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <%= link_to new_user_session_path, class:"btn btn-success w-100 py-4" do %>
+            <span>
+              <i class="fas fa-sign-in-alt fa-4x"></i>
+            </span>
+            <h3><%= t('dictionary.title_head.Sign In') %></h3>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <%= link_to new_user_registration_path, class:"btn btn-primary w-100 py-4" do %>
+            <span>
+              <i class="fas fa-user fa-4x"></i>
+            </span>
+            <h3><%= t('dictionary.title_head.Sign Up') %></h3>
+          <% end %>
+        </div>
       </div>
     </div>
+
   </div>
 
-</div>
-
-<div class="container about-area bg-light">
-  <div class="row">
-    <div class="col-md-12">
-      <!--<h3 class="text-center"><strong><%= t('dictionary.title_head.About') %></strong></h3>-->
-      <hr>
-      <p></p>
+  <div class="container about-area bg-light">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<h3 class="text-center"><strong><%= t('dictionary.title_head.About') %></strong></h3>-->
+        <hr>
+        <p></p>
+      </div>
     </div>
   </div>
 </div>
