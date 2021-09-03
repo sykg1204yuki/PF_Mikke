@@ -19,6 +19,10 @@
 
 body{
   background-color:#f0ffff;
+  min-height:100vh;
+  position:relative;
+  padding-bottom:120px;
+  box-sizing:border-box;
 }
 
 // トップページCSS
@@ -57,12 +61,24 @@ header, footer{
   background-position:center;
 }
 
+footer{
+  position:absolute;
+  bottom:0;
+}
+
+
 
 /*投稿一覧の写真にhoverした際のスケールで全体を拡大し影を付ける*/
 .index-theTarget:hover {
     transform: scale(1.05);
     /*ボックスの影*/
     box-shadow: 0 15px 15px rgba(57,250,215,0.4);
+}
+
+
+// ユーザー画像
+.user-image{
+  border-radius:50%;
 }
 
 

@@ -16,7 +16,7 @@
     <div class="col-md-3">
       <div class="text-center">
         <%= link_to user_path(user.id) do %>
-          <%= attachment_image_tag user, :profile_image, fallback:"no-image.jpg", size:"250x250", class:"rounded-circle" %><br>
+          <%= attachment_image_tag user, :profile_image, fallback:"no-image.jpg", size:"250x250", class:"user-image" %><br>
           <%= user.name %>
         <% end %>
       </div>

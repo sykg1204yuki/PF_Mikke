@@ -117,7 +117,7 @@
             <!--複数枚の写真を表示-->
             <% if post_image.images.attached? %>
               <div id="post-images">
-                <div class="theTarget">
+                <div class="index-theTarget">
                   <!-- ↑↑↑ eachで繰り返し処理をしているので、「id」ではなく「class」を指定-->
                   <% post_image.images.each do |image| %>
                     <%= image_tag image, size:"800x500" %>
