@@ -2,8 +2,21 @@ Rails.application.routes.draw do
 
   scope '(:locale)', locale: /#{I18n.available_locales.map(&:to_s).join('|')}/ do
     # For details on the DSL available within this file, see
-    devise_for :users
+    
+    devise_for :users, controllers:{
+      registrations: 'users/registrations',  #ゲストユーザーが削除機能を使用できない
+      passwords: 'users/passwords'           #ゲストユーザーがパスワードの再設定ができない
+    }
+
+    # ゲストログイン
+    devise_scope :user do
+      post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    end
+
+
     root to: "homes#top"
+
+
     resources :users, only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       get :followings, on: :member
@@ -12,7 +25,6 @@ Rails.application.routes.draw do
         get :favorites
       end
     end
-
 
 
     resources :post_images do
@@ -24,7 +36,7 @@ Rails.application.routes.draw do
     resources :areas, only: [:index]
     get '/map_areas' => 'areas#map_area'
     get '/searches' => 'searches#search'
-    
+
   end
 
 

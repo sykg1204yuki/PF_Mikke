@@ -8,6 +8,13 @@ class User < ApplicationRecord
   validates :encrypted_password, presence:true, length: {minimum: 6}
   validates :introduction, length: {maximum: 200}
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+    end
+  end
+
 
   # 投稿機能リレーション
   has_many :post_images, dependent: :destroy

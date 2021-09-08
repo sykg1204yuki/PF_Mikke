@@ -6,6 +6,8 @@
       <%= image_tag('logo.jpg', size:"150x80")  %>
     <% end %>
 
+    <%= link_to t('dictionary.title_head.Guest Sign In'), users_guest_sign_in_path, method: :post, class: "btn btn-success ml-5" %>
+
 
     <!--ナビゲーションアイコン（ハンバーガーメニュー）の表示部分-->
     <button class="navbar-toggler"
