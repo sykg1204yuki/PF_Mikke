@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -18,6 +19,13 @@
             <!--ロゴのリンク設定-->
             <%= link_to user_path(current_user), class:"navbar-brand py-1" do %>
               <%= image_tag('logo.jpg', size:"150x80") %>
+            <% end %>
+
+
+            <% if I18n.locale.to_s == "en" %>
+              <%= link_to('日本語', { :locale => 'ja' }, { class:"btn btn-light ml-5" }) %>
+            <% else %>
+              <%= link_to('English', { :locale => 'en' }, { class:"btn btn-light ml-5" }) %>
             <% end %>
 
 
@@ -34,7 +42,7 @@
 
             <!--ヘッダーリンク部分-->
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto">
+              <ul class="gnavi navbar-nav ml-auto">
                 <li>
                   <%= link_to t('dictionary.title_head.My Page'), user_path(current_user), class:"nav-link mx-2" %>
                 </li>
@@ -48,15 +56,9 @@
                   <%= link_to t('dictionary.title_head.Users List'), users_path, class:"nav-link mx-2" %>
                 </li>
                 <li>
-                  <%= link_to t('dictionary.title_head.Log Out'), destroy_user_session_path, method: :delete, class:"nav-link" %>
+                  <%= link_to t('dictionary.title_head.Log Out'), destroy_user_session_path, method: :delete, class:"nav-link mx-2" %>
                 </li>
-                <li>
-                  <% if I18n.locale.to_s == "en" %>
-                    <%= link_to('日本語', { :locale => 'ja' }, { class:"btn btn-light ml-3" }) %>
-                  <% else %>
-                    <%= link_to('English', { :locale => 'en' }, { class:"btn btn-light ml-3" }) %>
-                  <% end %>
-                </li>
+
               </ul>
             </div>
           </div>

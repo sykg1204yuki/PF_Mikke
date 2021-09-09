@@ -53,6 +53,40 @@ body{
 }
 
 
+// ヘッダーリンクについて（左から右に背景が伸びる）
+//背景の設定
+.gnavi li a{
+  position: relative;      //背景色の起点
+}
+
+.gnavi li a::after{
+  content: '';
+  position: absolute;      //絶対配置で線の位置を決定
+
+  bottom: 0;
+  left: 0;
+  width: 0;                //背景の形状
+  height: 100%;
+  background: #008000;
+
+  transition:all .5s;      //アニメーションの指定
+  opacity: 0;              //始めは透過0
+
+}
+
+//hoverの設定
+.gnavi li a:hover::after{
+  //背景の形状
+  width: 100%;    //横幅を伸ばす
+  opacity: 0.5;     //不透明
+}
+
+.gnavi li a:hover{
+  color: #fff;
+}
+// ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+
 // ログイン時のヘッダー・フッター
 header, footer{
   width:100%;

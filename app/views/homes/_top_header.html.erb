@@ -9,6 +9,13 @@
     <%= link_to t('dictionary.title_head.Guest Sign In'), users_guest_sign_in_path, method: :post, class: "btn btn-success ml-5" %>
 
 
+    <% if I18n.locale.to_s == "en" %>
+      <%= link_to('日本語', { :locale => 'ja' }, { class: "btn btn-light ml-5" }) %>
+    <% else %>
+      <%= link_to('English', { :locale => 'en' }, { class: "btn btn-light ml-5" }) %>
+    <% end %>
+
+
     <!--ナビゲーションアイコン（ハンバーガーメニュー）の表示部分-->
     <button class="navbar-toggler"
             type="button"
@@ -22,7 +29,7 @@
 
     <!--ヘッダーリンク部分-->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav gnavi ml-auto">
         <li>
           <%= link_to t('dictionary.title_head.Posts List'), post_images_path, class:"nav-link mx-2" %>
         </li>
@@ -32,13 +39,7 @@
         <li>
           <%= link_to t('dictionary.title_head.Sign Up'), new_user_registration_path, class:"nav-link mx-2" %>
         </li>
-        <li>
-          <% if I18n.locale.to_s == "en" %>
-            <%= link_to('日本語', { :locale => 'ja' }, { class: "btn btn-light ml-3" }) %>
-          <% else %>
-            <%= link_to('English', { :locale => 'en' }, { class: "btn btn-light ml-3" }) %>
-          <% end %>
-        </li>
+
       </ul>
     </div>
   </div>
