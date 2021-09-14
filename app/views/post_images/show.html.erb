@@ -4,102 +4,114 @@
     <h2><strong><%= t('dictionary.title_head.Post Details') %></strong></h2>
 
     <div class="row">
-      <div class="col-md-9">
 
-        <!--複数枚の写真を表示 スライドショー適用-->
-        <% if @post_image.images.attached? %>
-          <div id="post-images">
-            <div class="theTarget">
-              <% @post_image.images.each do |image| %>
-                <%= image_tag image, size:"800x500" %>
-              <% end %>
+          <!--複数枚の写真を表示 スライドショー適用-->
+          <% if @post_image.images.attached? %>
+            <div id="post-images">
+              <div class="theTarget">
+                <% @post_image.images.each do |image| %>
+                  <%= image_tag image, size:"800x500" %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
 
-        <div class="row mt-1">
-          <div class="col-md-7">
-            <p>
-              <%= t('dictionary.title_head.Date') %>：<%= l @post_image.created_at %>
-              |
-              <%= t('dictionary.title_head.Location') %>：<%= @post_image.area.area_name %>
-            </p>
-          </div>
-
-          <div class="col-md-5">
-            <p id="post_image-<%= @post_image.id %>">
-              <span class="comments-count">
-                <%= t('dictionary.title_head.Comments') %>：<%= @post_image.post_comments.count %>
-              </span>
-              |
-              <!--「いいね」機能-->
-              <span class="favorite-btn">
-                <%= render 'favorites/favorite', post_image: @post_image %>
-              </span>
-              |
-              <!--「発見」機能-->
-              <span class="discover-btn">
-                <%= render 'discovers/discover', post_image: @post_image %>
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <!--投稿者-->
-            <%= link_to user_path(@post_image.user.id) do %>
-              <div class="text-center">
-                <%= attachment_image_tag @post_image.user, :profile_image, fallback:"no-image.jpg", size:"150x150", class:"rounded-circle" %>
-                <p class="overflow-wrap">
-                  <%= safe_join(@post_image.user.name.split("\n"),tag(:br)) %>
+          <div class="col-md-12 h4">
+            <div class="row mt-1">
+              <div class="col-md-12">
+                <p>
+                  <span>
+                    <i class="far fa-calendar-alt"></i>：<%= l @post_image.created_at %>
+                  </span>
+                  <span class="ml-3">
+                    <i class="fas fa-camera"></i>：<%= @post_image.area.area_name %>
+                  </span>
                 </p>
               </div>
-            <% end %>
+            </div>
+
+            <div class="row text-right">
+              <div class="col-md-12">
+                <p id="post_image-<%= @post_image.id %>">
+                  <span class="comments-count">
+                    <i class="far fa-comment"></i>：<%= @post_image.post_comments.count %>
+                  </span>
+
+                  <!--「いいね」機能-->
+                  <span class="favorite-btn ml-3">
+                    <%= render 'favorites/favorite', post_image: @post_image %>
+                  </span>
+
+                  <!--「発見」機能-->
+                  <span class="discover-btn ml-3">
+                    <%= render 'discovers/discover', post_image: @post_image %>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <!--投稿者-->
+                <%= link_to user_path(@post_image.user.id) do %>
+                  <div class="text-center">
+                    <%= attachment_image_tag @post_image.user, :profile_image, fallback:"no-image.jpg", size:"150x150", class:"rounded-circle" %>
+                    <p class="overflow-wrap">
+                      <%= safe_join(@post_image.user.name.split("\n"),tag(:br)) %>
+                    </p>
+                  </div>
+                <% end %>
+              </div>
+
+              <!--投稿内容-->
+              <div class="col-md-7 mt-2 ml-5">
+                <span class="alert-dark p-1"><%= t('dictionary.title_head.Title') %></span>
+                <p class="overflow-wrap mt-2">
+                  <%= safe_join(@post_image.title.split("\n"),tag(:br)) %>
+                </p>
+                <hr>
+                <p class="overflow-wrap">
+                  <%= safe_join(@post_image.caption.split("\n"),tag(:br)) %>
+                </p>
+                <hr>
+                <% if @post_image.user == current_user %>
+                <p>
+                  <%= link_to t('dictionary.button.Edit'), edit_post_image_path(@post_image.id), class:"btn btn-outline-success btn-lg" %>
+
+                  <%= link_to t('dictionary.button.Delete'), post_image_path(@post_image.id), method: :delete, class:"btn btn-outline-danger btn-lg ml-2" %>
+                </p>
+                <% end %>
+              </div>
+            </div>
           </div>
 
-          <!--投稿内容-->
-          <div class="col-md-6 mt-2">
-              <p class="overflow-wrap">
-                <span class="alert-dark p-1"><%= t('dictionary.title_head.Title') %></span><br>
-                <%= safe_join(@post_image.title.split("\n"),tag(:br)) %>
-              </p>
-              <hr>
-              <p class="overflow-wrap">
-                <%= safe_join(@post_image.caption.split("\n"),tag(:br)) %>
-              </p>
-              <hr>
-              <% if @post_image.user == current_user %>
-              <p>
-                <%= link_to t('dictionary.button.Edit'), edit_post_image_path(@post_image.id), class:"btn btn-outline-success" %>
-
-                <%= link_to t('dictionary.button.Delete'), post_image_path(@post_image.id), method: :delete, class:"btn btn-outline-danger ml-2" %>
-              </p>
-              <% end %>
-
-          </div>
-        </div>
-      </div>
+    </div>
 
         <!--コメント投稿-->
-      <div class="col-md-3 mt-3">
-        <div>
+    <div class="row h5">
+      <div class="col-md-4">
+        <div class="mt-5">
           <%= form_with model:[@post_image,@post_comment] do |f| %>
           <div>
-            <%= f.text_area :comment, rows:'3', class:"w-100", placeholder:t('dictionary.submit.Please enter a comment!!') %><br>
-            <%= f.submit t('dictionary.submit.create'), class:"btn btn-primary w-50" %>
+            <%= f.text_area :comment, rows:'5', class:"w-100", placeholder:t('dictionary.submit.Please enter a comment!!') %><br>
+            <%= f.submit t('dictionary.submit.create'), class:"btn btn-primary btn-lg w-50" %>
           </div>
           <% end %>
         </div>
+      </div>
 
         <!--コメント一覧-->
-        <div class="mt-4">
-          <h6><strong><%= t('dictionary.title_head.Comments list') %></strong></h6>
-          <div class="comments-area" style="height:600px; width:350px; overflow-y:scroll;">
-            <%= render 'post_comments/post_comment', post_image: @post_image %>
+      <div class="col-md-7 offset-md-1">
+        <div class="mt-3">
+          <h3><strong><%= t('dictionary.title_head.Comments list') %></strong></h3>
+          <div class="card">
+            <div class="card-body">
+              <div class="comments-area" style="height:600px; width:100%; overflow-y:scroll;">
+                <%= render 'post_comments/post_comment', post_image: @post_image %>
+              </div>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -117,30 +129,30 @@
 
     <h2><strong><%= t('dictionary.title_head.Post Details') %></strong></h2>
 
-    <div class="row">
-      <div class="col-md-12">
+    <div class="row h4">
 
-        <!--複数枚の写真を表示 スライドショー適用-->
-        <% if @post_image.images.attached? %>
-          <div id="post-images">
-            <div class="theTarget">
-              <% @post_image.images.each do |image| %>
-                <%= image_tag image, size:"800x500" %>
-              <% end %>
-            </div>
+      <!--複数枚の写真を表示 スライドショー適用-->
+      <% if @post_image.images.attached? %>
+        <div id="post-images">
+          <div class="theTarget">
+            <% @post_image.images.each do |image| %>
+              <%= image_tag image, size:"800x500" %>
+            <% end %>
           </div>
-        <% end %>
+        </div>
+      <% end %>
 
+      <div class="col-md-12">
         <div class="row mt-1">
-          <div class="col-md-5">
+          <div class="col-md-12">
             <p>
-              <%= t('dictionary.title_head.Date') %>：<%= l @post_image.created_at %>
+              <i class="far fa-calendar-alt"></i>：<%= l @post_image.created_at %>
             </p>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-3">
+        <div class="row h4">
+          <div class="col-md-6">
             <!--投稿者-->
             <div class="text-center">
               <%= attachment_image_tag @post_image.user, :profile_image, fallback:"no-image.jpg", size:"150x150", class:"rounded-circle" %>

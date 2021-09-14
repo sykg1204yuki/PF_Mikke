@@ -4,25 +4,25 @@
 
 
 <div class="container my-5">
-  <div class="row">
-    <div class="col-md-6">
-      <h3><strong><%= t('dictionary.title_head.Sign Up') %></strong></h3>
+  <div class="row h4">
+    <div class="col-md-8">
+      <h2><strong><%= t('dictionary.title_head.Sign Up') %></strong></h2>
 
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <!--名前入力フォーム-->
-        <div class="field mt-2">
+        <div class="field my-3">
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"w-75" %>
         </div>
 
-        <div class="field mt-2">
+        <div class="field my-3">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"w-100" %>
         </div>
 
-        <div class="field mt-2">
+        <div class="field my-3">
           <%= f.label :password %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> <%= t('activerecord.attributes.user.characters') %>)</em>
@@ -30,13 +30,13 @@
           <%= f.password_field :password, autocomplete: "new-password", class:"w-100" %>
         </div>
 
-        <div class="field mt-2">
+        <div class="field my-3">
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-100" %>
         </div>
 
         <div class="actions mt-2">
-          <%= f.submit t('dictionary.submit.sign up'), class:"btn btn-primary" %>
+          <%= f.submit t('dictionary.submit.sign up'), class:"btn btn-primary btn-lg" %>
         </div>
       <% end %>
 

@@ -6,13 +6,13 @@
       <%= image_tag('logo.jpg', size:"150x80")  %>
     <% end %>
 
-    <%= link_to t('dictionary.title_head.Guest Sign In'), users_guest_sign_in_path, method: :post, class: "btn btn-success ml-5" %>
+    <%= link_to t('dictionary.title_head.Guest Sign In'), users_guest_sign_in_path, method: :post, class: "btn btn-success btn-lg ml-5" %>
 
 
     <% if I18n.locale.to_s == "en" %>
-      <%= link_to('日本語', { :locale => 'ja' }, { class: "btn btn-light ml-5" }) %>
+      <%= link_to('日本語', { :locale => 'ja' }, { class: "btn btn-light btn-lg ml-5" }) %>
     <% else %>
-      <%= link_to('English', { :locale => 'en' }, { class: "btn btn-light ml-5" }) %>
+      <%= link_to('English', { :locale => 'en' }, { class: "btn btn-light btn-lg ml-5" }) %>
     <% end %>
 
 

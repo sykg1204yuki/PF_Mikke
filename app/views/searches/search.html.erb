@@ -9,22 +9,22 @@
   <div class="row">
 
     <!--エリア検索-->
-    <div class="col-md-2" style="height:600px; overflow-y:scroll;">
+    <div class="col-md-3" style="height:1200px; overflow-y:scroll;">
       <%= render 'areas/areas_index', areas: @areas %>
     </div>
 
     <!--エリア検索結果一覧表示-->
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div class="container">
         <div class="row">
           <% @datas.reverse.each do |data| %>
-            <div class="col-md-4 p-1">
+            <div class="col-xs-4 p-1">
               <% if data.images.attached? %>
                 <%= link_to post_image_path(data.id) do %>
                   <div id="loginIndex-post-images">
                     <div class="index-theTarget">
                       <% data.images.each do |image| %>
-                        <%= image_tag image, size:"300x300" %>
+                        <%= image_tag image, size:"240x240" %>
                       <% end %>
                     </div>
                   </div>

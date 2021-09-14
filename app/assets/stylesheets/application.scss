@@ -126,20 +126,25 @@ p.overflow-wrap{
 
 // ここからJavaScript関連
 
-
-#post-images{
-  width:auto;
-  height:250px;
-}
-// ログイン時の投稿一覧画面表示
-#loginIndex-post-images{
+#mypage-post-images{
   width:300px;
   height:300px;
 }
 
+
+#post-images{
+  width:100%;
+  height:500px;
+}
+// ログイン時の投稿一覧画面表示
+#loginIndex-post-images{
+  width:240px;
+  height:240px;
+}
+
 // ログアウト時の投稿一覧画面表示
 #logoutIndex-post-images{
-  width:280px;
-  height:280px;
+  width:350px;
+  height:350px;
 }
 

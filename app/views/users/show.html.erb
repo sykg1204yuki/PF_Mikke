@@ -11,7 +11,7 @@
   <!--ここからプロフィール-->
   <div class="card">
     <div class="card-body">
-      <h4><strong><%= t('dictionary.title_head.Profile') %></strong></h4>
+      <h3><strong><%= t('dictionary.title_head.Profile') %></strong></h3>
       <hr>
       <div class="row">
         <div class="col-xs-5 text-center mx-auto mb-2">
@@ -22,7 +22,7 @@
           <!--ここからプロフィール編集ボタンorフォロー・フォロワーボタン-->
           <!--プロフィール編集ボタン-->
           <% if @user == current_user %>
-            <%= link_to t('dictionary.button.Profile Edit'), edit_user_path(@user.id), class:"btn btn-outline-secondary w-100" %>
+            <%= link_to t('dictionary.button.Profile Edit'), edit_user_path(@user.id), class:"btn btn-outline-secondary btn-lg w-100" %>
           <% else %>
             <!--フォロー・フォロワーボタン-->
             <div id="relatinship-<%= @user.id %>">
@@ -35,7 +35,7 @@
 
         <div class="col-xs-7 mx-auto">
           <div>
-            <p><strong><%= t('dictionary.title_head.Introduction') %></strong></p>
+            <h4><strong><%= t('dictionary.title_head.Introduction') %></strong></h4>
             <p class="overflow-wrap">
               <%= @user.introduction %>
             </p>
@@ -43,17 +43,20 @@
           <hr>
 
           <!--ここからフォロー・フォロワー数表示-->
-          <div>
+          <div class="h5">
             <p>
               <span id="followings-count">
                 <%= render 'relationships/followings_count', user: @user %>
               </span>
-              |
+              
               <span id="followers-count-<%= @user.id %>">
                 <%= render 'relationships/followers_count', user: @user %>
               </span>
-              |
-              <%= link_to favorites_user_path(@user) do  %>
+            </p>
+            <hr>
+            <!--いいねした投稿一覧-->
+            <p>
+              <%= link_to favorites_user_path(@user) do %>
                 <i class="fas fa-heart text-danger"></i><%= t('dictionary.title_head.Favorites list') %>
               <% end %>
             </p>
@@ -99,7 +102,7 @@
           <%= link_to post_image_path(post_image.id) do %>
             <!--複数枚の写真を表示-->
             <% if post_image.images.attached? %>
-              <div id="post-images">
+              <div id="mypage-post-images">
                 <div class="index-theTarget">
                   <!-- ↑↑↑ eachで繰り返し処理をしているので、「id」ではなく「class」を指定-->
                   <% post_image.images.each do |image| %>
@@ -110,9 +113,8 @@
             <% end %>
           <% end %>
           <p>
-            <%= t('dictionary.title_head.Date') %>:<%= l post_image.created_at %>
-            |
-            <%= t('dictionary.title_head.Comments') %>:<%= post_image.post_comments.count %>
+            <i class="far fa-calendar-alt"></i>：<%= l post_image.created_at %>
+            <i class="far fa-comment ml-4"></i>：<%= post_image.post_comments.count %>
           </p>
           <p>
             <span class="alert-dark p-2">Title</span><%= post_image.title %>

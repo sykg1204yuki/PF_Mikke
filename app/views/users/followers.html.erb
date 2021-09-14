@@ -5,7 +5,7 @@
 
 
       <table class="table table-white">
-        <tbody>
+        <tbody class="h5">
           <% @users.each do |user| %>
           <tr>
             <td class="text-center">
@@ -18,7 +18,7 @@
               <span id="followings-count-<%= user.id %>">
                 <%= render 'relationships/followings_count', user: user %>
               </span>
-              |
+              
               <span id="followers-count-<%= user.id %>">
                 <%= render 'relationships/followers_count', user: user %>
               </span>

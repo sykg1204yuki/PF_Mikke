@@ -1,4 +1,4 @@
 
-<%= link_to followers_user_path(user.id) do %>
+<%= link_to followers_user_path(user.id), class:"ml-3" do %>
   <%= t('dictionary.title_head.Followers') %>：<%= user.followers.count %>
 <% end %>
