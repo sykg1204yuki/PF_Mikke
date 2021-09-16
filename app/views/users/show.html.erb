@@ -48,7 +48,7 @@
               <span id="followings-count">
                 <%= render 'relationships/followings_count', user: @user %>
               </span>
-              
+
               <span id="followers-count-<%= @user.id %>">
                 <%= render 'relationships/followers_count', user: @user %>
               </span>
@@ -99,7 +99,7 @@
     <% @user.post_images.reverse.each do |post_image| %>
       <div class="col-xs-12 mx-auto">
         <div class="card-body">
-          <%= link_to post_image_path(post_image.id) do %>
+          <%= link_to post_image_path(post_image.id), class:"text-dark" do %>
             <!--複数枚の写真を表示-->
             <% if post_image.images.attached? %>
               <div id="mypage-post-images">
@@ -111,11 +111,11 @@
                 </div>
               </div>
             <% end %>
+            <p>
+              <i class="far fa-calendar-alt"></i>：<%= l post_image.created_at %>
+              <i class="far fa-comment ml-4"></i>：<%= post_image.post_comments.count %>
+            </p>
           <% end %>
-          <p>
-            <i class="far fa-calendar-alt"></i>：<%= l post_image.created_at %>
-            <i class="far fa-comment ml-4"></i>：<%= post_image.post_comments.count %>
-          </p>
           <p>
             <span class="alert-dark p-2">Title</span><%= post_image.title %>
           </p>
