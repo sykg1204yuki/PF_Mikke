@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   scope '(:locale)', locale: /#{I18n.available_locales.map(&:to_s).join('|')}/ do
     # For details on the DSL available within this file, see
-    
+
     devise_for :users, controllers:{
       registrations: 'users/registrations',  #ゲストユーザーが削除機能を使用できない
       passwords: 'users/passwords'           #ゲストユーザーがパスワードの再設定ができない
@@ -35,7 +35,10 @@ Rails.application.routes.draw do
 
     resources :areas, only: [:index]
     get '/map_areas' => 'areas#map_area'
-    get '/searches' => 'searches#search'
+    
+    # get '/searches/' => 'searches#search'
+    get '/searches/:id' => 'searches#search', as: "searches"        #多言語化とクエリパラメータは相性が悪いのでパスパラメータを使う
+    
 
   end
 

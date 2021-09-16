@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      post_image: "PostImage model"
+    attributes:
+      post_image:
+        images: "Image Selection"
+        title: "Title"
+        area: "Area"
+        caption: "Caption"

@@ -14,7 +14,8 @@
     <% areas.each do |area| %>
     <tr>
       <td>
-        <%= link_to area.area_name, searches_path('search[areaid]': area.id) %>
+        <%= link_to area.area_name, searches_path(area.id) %>    
+        <!--多言語化とクエリパラメータは相性が悪いのでパスパラメータを使う-->
       </td>
     </tr>
     <% end %>

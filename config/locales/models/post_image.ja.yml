@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      post_image: "モデルPostImage"
+    attributes:
+      post_image:
+        images: "画像選択"
+        title: "タイトル"
+        area: "エリア"
+        caption: "本文"
+        

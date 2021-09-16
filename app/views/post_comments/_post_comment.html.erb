@@ -1,36 +1,33 @@
 
 <% post_image.post_comments.reverse.each do |post_comment| %>
-<hr>
-<div class="row">
-  <div class="col-md-8">
-    <p>
-      <%= l post_comment.created_at %>
-    </p>
-  </div>
-  <div class="col-md-4">
-    <% if post_comment.user == current_user %>
-      <%= link_to t('dictionary.button.Delete'), post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger", remote: true %>
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-4 text-center">
-    <%= link_to user_path(post_comment.user.id) do %>
-      <%= attachment_image_tag post_comment.user, :profile_image, fallback:"no-image.jpg", size:"100x100", class:"rounded-circle" %><br>
-      <p　class="overflow-wrap">
-        <%= safe_join(post_comment.user.name.split("\n"),tag(:br)) %>
+  <div class="row">
+    <div class="col-md-8">
+      <p>
+        <%= l post_comment.created_at %>
       </p>
-    <% end %>
+    </div>
+    <div class="col-md-4">
+      <% if post_comment.user == current_user %>
+        <%= link_to t('dictionary.button.Delete'), post_image_post_comment_path(post_comment.post_image.id, post_comment.id), method: :delete, class:"text-danger", remote: true %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="col-md-8">
-    <p class="overflow-wrap">
-      <%= safe_join(post_comment.comment.split("\n"),tag(:br)) %>
-    </p>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <%= link_to user_path(post_comment.user.id) do %>
+        <%= attachment_image_tag post_comment.user, :profile_image, fallback:"no-image.jpg", size:"100x100", class:"rounded-circle" %><br>
+        <p　class="overflow-wrap">
+          <%= safe_join(post_comment.user.name.split("\n"),tag(:br)) %>
+        </p>
+      <% end %>
+    </div>
+
+    <div class="col-md-8">
+      <p class="overflow-wrap">
+        <%= safe_join(post_comment.comment.split("\n"),tag(:br)) %>
+      </p>
+    </div>
   </div>
-</div>
-
-
-
+  <hr>
 <% end %>

@@ -1,0 +1,52 @@
+パスパラメータ
+<area target="_self" alt="大阪市北区" title="大阪市北区" href="<%= searches_path(1) %>" coords="439,170,381,214" shape="rect">
+<area target="_self" alt="大阪市福島区" title="大阪市福島区" href="<%= searches_path(2) %>" coords="318,209,365,236" shape="rect">
+<area target="_self" alt="大阪市都島区" title="大阪市都島区" href="<%= searches_path(3) %>" coords="451,148,482,199" shape="rect">
+<area target="_self" alt="大阪市旭区" title="大阪市旭区" href="<%= searches_path(4) %>" coords="487,122,530,157" shape="rect">
+<area target="_self" alt="大阪市城東区" title="大阪市城東区" href="<%= searches_path(5) %>" coords="490,201,538,239" shape="rect">
+<area target="_self" alt="大阪市鶴見区" title="大阪市鶴見区" href="<%= searches_path(6) %>" coords="551,195,594,227" shape="rect">
+<area target="_self" alt="大阪市東成区" title="大阪市東成区" href="<%= searches_path(7) %>" coords="489,265,535,298" shape="rect">
+<area target="_self" alt="大阪市淀川区" title="大阪市淀川区" href="<%= searches_path(8) %>" coords="331,119,385,152" shape="rect">
+<area target="_self" alt="大阪市東淀川区" title="大阪市東淀川区" href="<%= searches_path(9) %>" coords="446,76,508,114" shape="rect">
+<area target="_self" alt="大阪市西淀川区" title="大阪市西淀川区" href="<%= searches_path(10) %>" coords="237,171,302,209" shape="rect">
+<area target="_self" alt="大阪市此花区" title="大阪市此花区" href="<%= searches_path(11) %>" coords="227,249,290,278" shape="rect">
+<area target="_self" alt="大阪市港区" title="大阪市港区" href="<%= searches_path(12) %>" coords="261,304,308,334" shape="rect">
+<area target="_self" alt="大阪市中央区" title="大阪市中央区" href="<%= searches_path(13) %>" coords="409,236,468,279" shape="rect">
+<area target="_self" alt="大阪市西区" title="大阪市西区" href="<%= searches_path(14) %>" coords="340,259,383,285" shape="rect">
+<area target="_self" alt="大阪市浪速区" title="大阪市浪速区" href="<%= searches_path(15) %>" coords="366,302,414,332" shape="rect">
+<area target="_self" alt="大阪市大正区" title="大阪市大正区" href="<%= searches_path(16) %>" coords="286,355,344,386" shape="rect">
+<area target="_self" alt="大阪市西成区" title="大阪市西成区" href="<%= searches_path(17) %>" coords="352,358,401,392" shape="rect">
+<area target="_self" alt="大阪市住吉区" title="大阪市住吉区" href="<%= searches_path(18) %>" coords="389,450,438,488" shape="rect">
+<area target="_self" alt="大阪市住之江区" title="大阪市住之江区" href="<%= searches_path(19) %>" coords="281,420,348,454" shape="rect">
+<area target="_self" alt="大阪市天王寺区" title="大阪市天王寺区" href="<%= searches_path(20) %>" coords="433,301,457,349" shape="rect">
+<area target="_self" alt="大阪市生野区" title="大阪市生野区" href="<%= searches_path(21) %>" coords="477,315,535,352" shape="rect">
+<area target="_self" alt="大阪市阿倍野区" title="大阪市阿倍野区" href="<%= searches_path(22) %>" coords="409,373,450,400" shape="rect">
+<area target="_self" alt="大阪市東住吉区" title="大阪市東住吉区" href="<%= searches_path(23) %>" coords="446,407,496,434" shape="rect">
+<area target="_self" alt="大阪市平野区" title="大阪市平野区" href="<%= searches_path(24) %>" coords="513,435,563,470" shape="rect">
+--------------------
+
+クエリパラメータ
+<area target="_self" alt="大阪市北区" title="大阪市北区" href="<%= searches_path(search: {areaid: 1}) %>" coords="439,170,381,214" shape="rect">
+<area target="_self" alt="大阪市福島区" title="大阪市福島区" href="<%= searches_path(search: {areaid: 2}) %>" coords="318,209,365,236" shape="rect">
+<area target="_self" alt="大阪市都島区" title="大阪市都島区" href="<%= searches_path(search: {areaid: 3}) %>" coords="451,148,482,199" shape="rect">
+<area target="_self" alt="大阪市旭区" title="大阪市旭区" href="<%= searches_path(search: {areaid: 4}) %>" coords="487,122,530,157" shape="rect">
+<area target="_self" alt="大阪市城東区" title="大阪市城東区" href="<%= searches_path(search: {areaid: 5}) %>" coords="490,201,538,239" shape="rect">
+<area target="_self" alt="大阪市鶴見区" title="大阪市鶴見区" href="<%= searches_path(search: {areaid: 6}) %>" coords="551,195,594,227" shape="rect">
+<area target="_self" alt="大阪市東成区" title="大阪市東成区" href="<%= searches_path(search: {areaid: 7}) %>" coords="489,265,535,298" shape="rect">
+<area target="_self" alt="大阪市淀川区" title="大阪市淀川区" href="<%= searches_path(search: {areaid: 8}) %>" coords="331,119,385,152" shape="rect">
+<area target="_self" alt="大阪市東淀川区" title="大阪市東淀川区" href="<%= searches_path(search: {areaid: 9}) %>" coords="446,76,508,114" shape="rect">
+<area target="_self" alt="大阪市西淀川区" title="大阪市西淀川区" href="<%= searches_path(search: {areaid: 10}) %>" coords="237,171,302,209" shape="rect">
+<area target="_self" alt="大阪市此花区" title="大阪市此花区" href="<%= searches_path(search: {areaid: 11}) %>" coords="227,249,290,278" shape="rect">
+<area target="_self" alt="大阪市港区" title="大阪市港区" href="<%= searches_path(search: {areaid: 12}) %>" coords="261,304,308,334" shape="rect">
+<area target="_self" alt="大阪市中央区" title="大阪市中央区" href="<%= searches_path(search: {areaid: 13}) %>" coords="409,236,468,279" shape="rect">
+<area target="_self" alt="大阪市西区" title="大阪市西区" href="<%= searches_path(search: {areaid: 14}) %>" coords="340,259,383,285" shape="rect">
+<area target="_self" alt="大阪市浪速区" title="大阪市浪速区" href="<%= searches_path(search: {areaid: 15}) %>" coords="366,302,414,332" shape="rect">
+<area target="_self" alt="大阪市大正区" title="大阪市大正区" href="<%= searches_path(search: {areaid: 16}) %>" coords="286,355,344,386" shape="rect">
+<area target="_self" alt="大阪市西成区" title="大阪市西成区" href="<%= searches_path(search: {areaid: 17}) %>" coords="352,358,401,392" shape="rect">
+<area target="_self" alt="大阪市住吉区" title="大阪市住吉区" href="<%= searches_path(search: {areaid: 18}) %>" coords="389,450,438,488" shape="rect">
+<area target="_self" alt="大阪市住之江区" title="大阪市住之江区" href="<%= searches_path(search: {areaid: 19}) %>" coords="281,420,348,454" shape="rect">
+<area target="_self" alt="大阪市天王寺区" title="大阪市天王寺区" href="<%= searches_path(search: {areaid: 20}) %>" coords="433,301,457,349" shape="rect">
+<area target="_self" alt="大阪市生野区" title="大阪市生野区" href="<%= searches_path(search: {areaid: 21}) %>" coords="477,315,535,352" shape="rect">
+<area target="_self" alt="大阪市阿倍野区" title="大阪市阿倍野区" href="<%= searches_path(search: {areaid: 22}) %>" coords="409,373,450,400" shape="rect">
+<area target="_self" alt="大阪市東住吉区" title="大阪市東住吉区" href="<%= searches_path(search: {areaid: 23}) %>" coords="446,407,496,434" shape="rect">
+<area target="_self" alt="大阪市平野区" title="大阪市平野区" href="<%= searches_path(search: {areaid: 24}) %>" coords="513,435,563,470" shape="rect">
