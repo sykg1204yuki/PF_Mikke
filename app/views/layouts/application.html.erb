@@ -20,14 +20,14 @@
             <%= link_to user_path(current_user), class:"navbar-brand py-1" do %>
               <%= image_tag('logo.jpg', size:"150x80") %>
             <% end %>
-            
+
             <!--言語切り替えボタン-->
             <% if I18n.locale.to_s == "en" %>
               <%= link_to('日本語', { :locale => 'ja' }, { class:"btn btn-light btn-lg ml-5" }) %>
             <% else %>
               <%= link_to('English', { :locale => 'en' }, { class:"btn btn-light btn-lg ml-5" }) %>
             <% end %>
-            
+
                         <!--※ search.html.erbの言語切り替えについて ※-->
                         <!--PF作成当初URLをクエリパラメータにて取得していたが、多言語化との相性が悪くパスパラメータでの取得に切り替え-->
                         <!--クエリパラメータのまま作成するには、-->
@@ -38,7 +38,7 @@
                             <%#= link_to('日本語', { :locale => 'ja' }, { class:"btn btn-light btn-lg ml-5" }) %>
                           <%# else %>
                             <%#= link_to('English', { :locale => 'en' }, { class:"btn btn-light btn-lg ml-5" }) %>
-                          <%# end %>  
+                          <%# end %>
                         <%# end %>
 
 
@@ -56,7 +56,7 @@
 
             <!--ヘッダーリンク部分-->
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="gnavi navbar-nav ml-auto">
+              <ul class="gnavi navbar-nav ml-auto font-weight-bold">
                 <li>
                   <%= link_to t('dictionary.title_head.My Page'), user_path(current_user), class:"nav-link mx-2" %>
                 </li>

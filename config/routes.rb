@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :areas, only: [:index]
     get '/map_areas' => 'areas#map_area'
     
-    # get '/searches/' => 'searches#search'
+    # get '/searches' => 'searches#search'
     get '/searches/:id' => 'searches#search', as: "searches"        #多言語化とクエリパラメータは相性が悪いのでパスパラメータを使う
     
 
